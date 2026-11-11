@@ -1,0 +1,1949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10263b">
+<title>Module 1: Role Orientation and Commercial Lines Fundamentals</title>
+<style>
+:root {
+  --navy: #10263b;
+  --navy-2: #183a52;
+  --teal: #087f79;
+  --teal-dark: #06645f;
+  --mint: #e7f5f2;
+  --gold: #dda936;
+  --gold-light: #fff5d9;
+  --ink: #21364a;
+  --muted: #607386;
+  --paper: #f5f8fb;
+  --white: #fff;
+  --line: #dce5ec;
+  --good: #18764b;
+  --good-bg: #eaf6ef;
+  --bad: #a53d39;
+  --bad-bg: #fff0ef;
+  --shadow: 0 12px 32px rgba(16, 38, 59, .08);
+  --radius: 16px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 16px/1.6 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+button:focus-visible, select:focus-visible, textarea:focus-visible, input:focus-visible {
+  outline: 3px solid #e2ad3b;
+  outline-offset: 3px;
+}
+[hidden] { display: none !important; }
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.icon-lg { width: 2rem; height: 2rem; }
+.icon-xl { width: 2.6rem; height: 2.6rem; }
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 0 28px;
+  color: var(--white);
+  background: var(--navy);
+  box-shadow: 0 5px 18px rgba(12, 33, 50, .15);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--white);
+  text-decoration: none;
+  min-width: 0;
+}
+.brand-mark {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  color: var(--navy);
+  background: var(--gold);
+}
+.brand-name { font-weight: 750; letter-spacing: .01em; }
+.brand-subtitle { display: block; color: #c4d3dc; font-size: .76rem; font-weight: 500; }
+.header-tools { display: flex; align-items: center; gap: 18px; }
+.header-progress { width: min(230px, 24vw); }
+.header-progress-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 5px;
+  color: #d4e1e8;
+  font-size: .72rem;
+}
+.progress-track { height: 7px; overflow: hidden; border-radius: 99px; background: #3a5266; }
+.progress-fill { height: 100%; width: 0; background: var(--gold); border-radius: inherit; transition: width .25s ease; }
+.header-continue {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 13px;
+  color: var(--navy);
+  background: var(--gold);
+  border: 0;
+  border-radius: 10px;
+  font-weight: 750;
+}
+.header-continue:hover { background: #f0c45f; }
+
+.app-layout { display: grid; grid-template-columns: 270px minmax(0, 1fr); min-height: calc(100vh - 72px); }
+.sidebar {
+  position: sticky;
+  top: 72px;
+  align-self: start;
+  height: calc(100vh - 72px);
+  overflow-y: auto;
+  padding: 24px 17px 28px;
+  color: #e8f0f4;
+  background: #17344b;
+}
+.course-label {
+  margin: 0 10px 7px;
+  color: #aac0cd;
+  font-size: .7rem;
+  font-weight: 750;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.sidebar-title { margin: 0 10px 19px; font-size: 1rem; line-height: 1.35; }
+.module-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 10px 20px;
+  padding: 5px 9px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 999px;
+  color: #dce9ef;
+  font-size: .75rem;
+}
+.nav-list { display: grid; gap: 5px; }
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  padding: 10px 11px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: #d5e2e9;
+  background: transparent;
+  text-align: left;
+  font-size: .88rem;
+}
+.nav-link:hover { background: rgba(255,255,255,.08); }
+.nav-link[aria-current="page"] {
+  color: var(--white);
+  background: #24516a;
+  border-color: #387189;
+  font-weight: 700;
+}
+.nav-link.done:not([aria-current="page"]) .nav-icon { color: #75d2b2; }
+.nav-icon {
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 7px;
+  color: #b7cad4;
+  background: rgba(255,255,255,.07);
+}
+.nav-icon .icon { width: 16px; height: 16px; }
+.sidebar-note {
+  margin: 24px 5px 0;
+  padding: 14px;
+  border-radius: 12px;
+  color: #d8e6ed;
+  background: rgba(255,255,255,.07);
+  font-size: .8rem;
+}
+.sidebar-note strong { display: block; margin-bottom: 4px; color: var(--gold); }
+main { min-width: 0; padding: 32px clamp(18px, 4vw, 58px) 68px; }
+.lesson-section { max-width: 1120px; margin: 0 auto; }
+.page-kicker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  color: var(--teal-dark);
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.page-title { margin: 0; color: var(--navy); font-size: clamp(2rem, 4vw, 3.35rem); line-height: 1.08; letter-spacing: -.04em; }
+.page-lead { max-width: 780px; margin: 15px 0 26px; color: #4e6376; font-size: 1.1rem; }
+h2 { margin: 0 0 13px; color: var(--navy); font-size: clamp(1.35rem, 2.2vw, 1.85rem); line-height: 1.2; }
+h3 { margin: 0 0 8px; color: var(--navy); font-size: 1.08rem; line-height: 1.3; }
+p { margin: 0 0 13px; }
+ul, ol { padding-left: 1.25rem; }
+li { margin: 5px 0; }
+section.content-block { margin-top: 38px; }
+.section-intro { max-width: 780px; margin: 0 0 20px; color: var(--muted); }
+.eyebrow { color: var(--teal-dark); font-size: .74rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.small { color: var(--muted); font-size: .88rem; }
+.muted { color: var(--muted); }
+strong { color: var(--navy); }
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(290px, .88fr);
+  align-items: center;
+  gap: 25px;
+  overflow: hidden;
+  padding: clamp(25px, 5vw, 54px);
+  border-radius: 24px;
+  color: var(--white);
+  background: linear-gradient(125deg, #10263b, #1c5267);
+  box-shadow: var(--shadow);
+}
+.hero::after {
+  position: absolute;
+  right: -95px;
+  bottom: -165px;
+  width: 340px;
+  height: 340px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 50%;
+  content: "";
+}
+.hero-copy { position: relative; z-index: 1; }
+.hero .page-kicker { color: #9be0cd; }
+.hero h1 { max-width: 650px; margin: 0; font-size: clamp(2.2rem, 4.7vw, 4rem); line-height: 1.02; letter-spacing: -.045em; }
+.hero p { max-width: 620px; margin: 20px 0; color: #d7e4eb; font-size: 1.08rem; }
+.hero-art { position: relative; z-index: 1; width: 100%; max-width: 440px; justify-self: end; }
+.hero-meta { display: flex; flex-wrap: wrap; gap: 9px; }
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 11px;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 99px;
+  color: #f4f8fa;
+  background: rgba(255,255,255,.08);
+  font-size: .82rem;
+}
+.pill .icon { width: 16px; height: 16px; color: var(--gold); }
+
+.card, .activity-card, .callout {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: 0 7px 22px rgba(16,38,59,.045);
+}
+.card { padding: 21px; }
+.card p:last-child, .card ul:last-child { margin-bottom: 0; }
+.card-header { display: flex; align-items: flex-start; gap: 13px; margin-bottom: 11px; }
+.card-icon {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  flex: 0 0 auto;
+  border-radius: 13px;
+  color: var(--teal-dark);
+  background: var(--mint);
+}
+.grid-2, .grid-3, .grid-4 { display: grid; gap: 16px; }
+.grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  margin: 20px 0;
+  padding: 17px 19px;
+  border-color: #c9e5df;
+  border-left: 5px solid var(--teal);
+  background: #f0faf7;
+}
+.callout.warning { border-color: #f0dfad; border-left-color: var(--gold); background: #fffaf0; }
+.callout.alert { border-color: #f0c8c3; border-left-color: var(--bad); background: #fff6f5; }
+.callout .icon { margin-top: 2px; color: var(--teal-dark); }
+.callout.warning .icon { color: #9a6b00; }
+.callout.alert .icon { color: var(--bad); }
+.callout p:last-child { margin-bottom: 0; }
+.bullet-check { list-style: none; padding: 0; }
+.bullet-check li { position: relative; padding-left: 26px; }
+.bullet-check li::before {
+  position: absolute;
+  left: 0;
+  top: .25em;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  color: var(--teal-dark);
+  background: var(--mint);
+  content: "✓";
+  text-align: center;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 17px;
+}
+.stage-cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 11px; }
+.stage-card {
+  padding: 17px 14px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--white);
+}
+.stage-card .stage-word { display: block; margin-bottom: 7px; color: var(--teal-dark); font-size: .76rem; font-weight: 850; letter-spacing: .1em; }
+.stage-card p { margin: 0; color: var(--muted); font-size: .86rem; }
+.objective-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 26px; padding: 0; list-style: none; counter-reset: objectives; }
+.objective-list li { position: relative; min-height: 42px; margin: 0; padding: 10px 0 10px 39px; border-bottom: 1px solid var(--line); counter-increment: objectives; }
+.objective-list li::before {
+  position: absolute;
+  left: 0;
+  top: 9px;
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 8px;
+  color: var(--teal-dark);
+  background: var(--mint);
+  content: counter(objectives);
+  font-size: .76rem;
+  font-weight: 800;
+}
+
+.diagram-shell {
+  padding: 22px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(145deg, #fff, #f1f7f8);
+}
+.stakeholder-flow { display: flex; align-items: stretch; justify-content: center; gap: 8px; }
+.role-node {
+  min-width: 125px;
+  flex: 1;
+  padding: 15px 11px;
+  border: 1px solid #d9e7e9;
+  border-radius: 13px;
+  background: var(--white);
+  text-align: center;
+}
+.role-node .icon { display: block; width: 25px; height: 25px; margin: 0 auto 7px; color: var(--teal); }
+.role-node strong { display: block; font-size: .9rem; }
+.role-node span { display: block; margin-top: 3px; color: var(--muted); font-size: .75rem; line-height: 1.35; }
+.flow-arrow { display: grid; place-items: center; color: #7c9aa8; }
+.flow-arrow .icon { width: 19px; }
+.optional-route { max-width: 660px; margin: 14px auto 0; padding: 11px 14px; border-radius: 10px; color: #536879; background: #eaf2f5; text-align: center; font-size: .84rem; }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 13px; background: var(--white); }
+table { width: 100%; border-collapse: collapse; min-width: 560px; }
+th, td { padding: 12px 15px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+th { color: var(--navy); background: #eef4f7; font-size: .85rem; }
+td { font-size: .91rem; }
+tr:last-child td { border-bottom: 0; }
+
+.activity-card { margin-top: 20px; padding: 22px; border-top: 4px solid var(--teal); }
+.activity-heading { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 13px; }
+.activity-number {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  border-radius: 10px;
+  color: var(--white);
+  background: var(--teal);
+  font-size: .85rem;
+  font-weight: 850;
+}
+.instruction { margin: 0 0 14px; color: var(--muted); }
+.choice-grid { display: grid; gap: 9px; }
+.answer-option {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid #d6e1e8;
+  border-radius: 10px;
+  color: var(--ink);
+  background: var(--white);
+  text-align: left;
+  transition: border-color .15s, background .15s, transform .15s;
+}
+.answer-option:hover { border-color: #75b4aa; transform: translateY(-1px); }
+.answer-option.selected { border-color: var(--teal); background: #eaf7f4; box-shadow: inset 0 0 0 1px var(--teal); }
+.answer-option.correct-mark { border-color: #70b792; background: var(--good-bg); }
+.answer-option.incorrect-mark { border-color: #d99189; background: var(--bad-bg); }
+.action-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 14px; }
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 10px 15px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: var(--white);
+  background: var(--teal-dark);
+  font-weight: 750;
+}
+.button:hover { background: #054e4a; }
+.button.secondary { color: var(--navy); border-color: var(--line); background: var(--white); }
+.button.secondary:hover { background: #edf4f6; }
+.button.gold { color: var(--navy); background: var(--gold); }
+.button.gold:hover { background: #edc35e; }
+.button.small-button { min-height: 35px; padding: 7px 11px; font-size: .86rem; }
+.feedback {
+  min-height: 0;
+  margin-top: 12px;
+  padding: 0;
+  border-radius: 9px;
+  color: var(--muted);
+  font-size: .91rem;
+}
+.feedback:not(:empty) { padding: 11px 13px; background: #f1f5f7; }
+.feedback.is-correct { color: #145e3c; background: var(--good-bg) !important; }
+.feedback.is-incorrect { color: #8a302c; background: var(--bad-bg) !important; }
+.feedback.is-neutral { color: #405b70; background: #edf4f7 !important; }
+
+.multi-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+.multi-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid #d6e1e8;
+  border-radius: 10px;
+  color: var(--ink);
+  background: var(--white);
+  text-align: left;
+}
+.multi-option::before {
+  display: grid;
+  place-items: center;
+  width: 19px;
+  height: 19px;
+  flex: 0 0 auto;
+  margin-top: 1px;
+  border: 1.5px solid #96a8b5;
+  border-radius: 5px;
+  content: "";
+}
+.multi-option.selected { border-color: var(--teal); background: #eff9f6; }
+.multi-option.selected::before { border-color: var(--teal); color: var(--white); background: var(--teal); content: "✓"; font-size: 13px; font-weight: 900; }
+.classify-list { display: grid; gap: 10px; }
+.classify-item {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: #fff;
+}
+.classify-actions { display: flex; gap: 7px; }
+.classify-actions button {
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: #fff;
+  font-size: .82rem;
+  font-weight: 700;
+}
+.classify-actions button.selected { color: var(--teal-dark); border-color: var(--teal); background: var(--mint); }
+.classify-item.correct-item { border-color: #78b895; background: #f0faf3; }
+.classify-item.incorrect-item { border-color: #d99088; background: #fff6f5; }
+.matching-activity { display: grid; gap: 9px; }
+.match-row {
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) minmax(210px, .9fr);
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.match-row label { font-size: .92rem; }
+select, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cbd8e0;
+  border-radius: 9px;
+  color: var(--ink);
+  background: var(--white);
+}
+textarea { min-height: 110px; resize: vertical; }
+.explanation { display: none; }
+
+.coverage-card { position: relative; padding: 19px; }
+.coverage-card .card-icon { margin-bottom: 12px; }
+.coverage-card p { color: var(--muted); font-size: .9rem; }
+.coverage-card .mini-label {
+  display: inline-block;
+  margin-top: 7px;
+  padding: 4px 8px;
+  border-radius: 99px;
+  color: #326259;
+  background: var(--mint);
+  font-size: .73rem;
+  font-weight: 750;
+}
+.term-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.term-card { padding: 16px; border-radius: 12px; background: #edf4f7; }
+.term-card strong { display: block; margin-bottom: 5px; }
+.term-card p { margin: 0; color: #53697b; font-size: .88rem; }
+
+.process-visual { position: relative; margin: 22px 0; padding: 22px 18px; border: 1px solid var(--line); border-radius: 16px; background: #fff; }
+.process-visual::before {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  top: 47px;
+  height: 3px;
+  background: #dbe9e7;
+  content: "";
+}
+.process-list {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(80px, 1fr));
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+  counter-reset: process;
+}
+.process-list li { margin: 0; text-align: center; counter-increment: process; }
+.process-dot {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 9px;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--teal);
+  box-shadow: 0 0 0 2px #b7d9d3;
+  font-size: .82rem;
+  font-weight: 850;
+}
+.process-list li:nth-child(n+7) .process-dot { background: #c18b1e; box-shadow: 0 0 0 2px #edddb4; }
+.process-list strong { display: block; font-size: .77rem; line-height: 1.3; }
+.process-list span:last-child { display: block; margin-top: 4px; color: var(--muted); font-size: .7rem; line-height: 1.3; }
+.lifecycle-detail { display: grid; grid-template-columns: 42px 1fr; gap: 13px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.lifecycle-detail:last-child { border-bottom: 0; }
+.detail-number { display: grid; place-items: center; width: 35px; height: 35px; border-radius: 11px; color: var(--teal-dark); background: var(--mint); font-weight: 850; }
+.lifecycle-detail p:last-child { margin-bottom: 0; }
+.note-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.note-sample { padding: 17px; border-radius: 13px; background: #fff; border: 1px solid var(--line); }
+.note-sample.bad { border-top: 4px solid #c75d55; }
+.note-sample.good { border-top: 4px solid var(--teal); }
+.note-text { margin: 10px 0 0; padding: 12px; border-radius: 9px; color: #42596b; background: #f4f7f9; font-size: .91rem; }
+.stop-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 11px; counter-reset: stopstep; }
+.stop-step { position: relative; padding: 18px 16px; border: 1px solid var(--line); border-radius: 13px; background: #fff; counter-increment: stopstep; }
+.stop-step::before { display: block; margin-bottom: 9px; color: var(--teal-dark); content: "0" counter(stopstep); font-weight: 900; }
+.stop-step p { margin: 0; color: var(--muted); font-size: .87rem; }
+
+.quiz-item { margin: 16px 0; padding: 19px; border: 1px solid var(--line); border-radius: 13px; background: #fff; }
+.quiz-question { margin: 0 0 11px; color: var(--navy); font-weight: 750; }
+.quiz-option { display: flex; align-items: flex-start; gap: 9px; margin: 8px 0; color: #3e5568; cursor: pointer; }
+.quiz-option input { margin-top: 5px; accent-color: var(--teal); }
+.quiz-feedback { display: none; margin-top: 10px; padding: 10px 12px; border-radius: 8px; font-size: .87rem; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { color: #145e3c; background: var(--good-bg); }
+.quiz-feedback.incorrect { color: #8a302c; background: var(--bad-bg); }
+.quiz-results { margin-top: 18px; padding: 17px; border-radius: 12px; }
+.quiz-results.pass { color: #145e3c; background: var(--good-bg); }
+.quiz-results.retry { color: #7b4e05; background: #fff7e5; }
+.quiz-results p:last-child { margin-bottom: 0; }
+
+.scenario-box {
+  padding: 21px;
+  border: 1px solid #cfe2e5;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #f0faf8, #fff);
+}
+.scenario-head { display: flex; align-items: flex-start; gap: 13px; margin-bottom: 11px; }
+.scenario-head .card-icon { background: #d7efea; }
+.form-label { display: block; margin: 0 0 7px; color: var(--navy); font-weight: 750; }
+.response-grid { display: grid; gap: 16px; margin-top: 18px; }
+.response-field { padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+.response-field textarea { min-height: 85px; }
+.model-answer { margin-top: 15px; padding: 18px; border: 1px solid #badfd4; border-radius: 12px; background: #f0faf5; }
+.model-answer h3 { color: #155f49; }
+.model-answer p:last-child { margin-bottom: 0; }
+.checklist { padding: 0; list-style: none; }
+.checklist li { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.checklist li:last-child { border-bottom: 0; }
+.status-pill { flex: 0 0 auto; padding: 3px 8px; border-radius: 99px; color: #53687a; background: #edf2f5; font-size: .72rem; font-weight: 800; }
+.status-pill.complete { color: #145e3c; background: var(--good-bg); }
+
+.lesson-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 42px;
+  padding-top: 19px;
+  border-top: 1px solid var(--line);
+}
+.lesson-footer .button { min-width: 118px; }
+.completion-banner { padding: 25px; border-radius: 17px; color: var(--white); background: linear-gradient(110deg, #0d655e, #178e79); }
+.completion-banner h2 { color: #fff; }
+.completion-banner p { max-width: 750px; margin-bottom: 0; color: #e3f5ef; }
+footer.page-foot { max-width: 1120px; margin: 36px auto 0; padding-top: 15px; border-top: 1px solid var(--line); color: #8293a0; font-size: .78rem; }
+.inline-code { padding: 2px 6px; border-radius: 5px; color: #34566b; background: #eaf0f4; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: .9em; }
+.accessible-note { color: #607386; font-size: .82rem; }
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  border-radius: 99px;
+  color: #456176;
+  background: #eaf1f5;
+  font-size: .75rem;
+  font-weight: 750;
+}
+
+@media (max-width: 1050px) {
+  .app-layout { grid-template-columns: 235px minmax(0, 1fr); }
+  .grid-4, .term-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .process-list { grid-template-columns: repeat(4, 1fr); }
+  .process-visual::before { display: none; }
+}
+@media (max-width: 800px) {
+  .topbar { height: auto; min-height: 66px; padding: 10px 16px; }
+  .header-progress { display: none; }
+  .app-layout { display: block; }
+  .sidebar { position: sticky; top: 66px; z-index: 10; height: auto; padding: 10px 12px; overflow-x: auto; }
+  .sidebar > .course-label, .sidebar > .sidebar-title, .sidebar > .module-chip, .sidebar-note { display: none; }
+  .nav-list { display: flex; width: max-content; min-width: 100%; gap: 6px; }
+  .nav-link { width: auto; white-space: nowrap; padding: 8px 10px; font-size: .8rem; }
+  .nav-icon { width: 22px; height: 22px; }
+  main { padding: 24px 18px 55px; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-art { max-width: 360px; justify-self: center; }
+  .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .brand-subtitle { display: none; }
+  .brand-name { font-size: .9rem; }
+  .header-continue { padding: 8px 10px; font-size: .82rem; }
+  .grid-2, .grid-3, .grid-4, .term-grid, .objective-list { grid-template-columns: 1fr; }
+  .stage-cards { grid-template-columns: repeat(2, 1fr); }
+  .stage-card:last-child { grid-column: 1 / -1; }
+  .stakeholder-flow { flex-direction: column; }
+  .role-node { min-width: auto; }
+  .flow-arrow { transform: rotate(90deg); }
+  .process-list { grid-template-columns: repeat(2, 1fr); }
+  .process-list li:nth-child(n+7) .process-dot { background: #c18b1e; }
+  .multi-options { grid-template-columns: 1fr; }
+  .classify-item { grid-template-columns: 1fr; }
+  .classify-actions { flex-wrap: wrap; }
+  .match-row { grid-template-columns: 1fr; }
+  .note-comparison { grid-template-columns: 1fr; }
+  .stop-flow { grid-template-columns: repeat(2, 1fr); }
+  .lesson-footer { align-items: stretch; }
+  .lesson-footer .button { min-width: 0; flex: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- Embedded icon library: this course makes no external image or font requests. -->
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 20 6v5c0 5.2-3.4 8.6-8 10-4.6-1.4-8-4.8-8-10V6l8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V5l8-3 8 3v16"/><path d="M2 21h20M8 8h1m6 0h1M8 12h1m6 0h1M8 16h1m6 0h1M11 21v-3h2v3"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="4"/><path d="M20 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></symbol>
+  <symbol id="i-clipboard" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 4.5V3h6v1.5M8 10h8M8 14h8M8 18h5"/></symbol>
+  <symbol id="i-car" viewBox="0 0 24 24"><path d="m5 11 1.5-5h11L19 11l2 2v5h-2v2h-3v-2H8v2H5v-2H3v-5l2-2Z"/><path d="M5 11h14M6 15h.01M18 15h.01"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 8.5c0 5.2-8.8 11-8.8 11s-8.8-5.8-8.8-11A4.6 4.6 0 0 1 12 6.2a4.6 4.6 0 0 1 8.8 2.3Z"/></symbol>
+  <symbol id="i-umbrella" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 18 0H3Z"/><path d="M12 12v7a2 2 0 0 0 4 0"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 0 0 .6-8A6 6 0 0 0 6 8.5 4.8 4.8 0 0 0 7 18Z"/><path d="m9 14 2 2 4-4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-warning" viewBox="0 0 24 24"><path d="m10.3 4.2-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-2.8l-8-14a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4m0 4h.01"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-message" viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H4l1.5-4A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8 11h8M8 14h5"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="7"/><path d="m16 16 5 5"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M5.6 9A7 7 0 0 1 18 6l2 6M4 12l2 6a7 7 0 0 0 12.4-3"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21V5.5Z"/><path d="M4 18a2.5 2.5 0 0 1 2.5-2.5H20M8 7h8M8 11h8"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 1 1 8 0v3M12 14v3"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V10Z"/><path d="M9 21v-7h6v7"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 19V5m0 14h17"/><path d="m7 15 4-4 3 2 5-6"/><path d="M16 7h3v3"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3ZM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16Z"/></symbol>
+</svg>
+
+<header class="topbar">
+  <a class="brand" href="#welcome" aria-label="Commercial Lines Academy home" data-go="welcome">
+    <span class="brand-mark"><svg class="icon icon-lg"><use href="#i-shield"></use></svg></span>
+    <span><span class="brand-name">Commercial Lines Academy</span><span class="brand-subtitle">Customer Service Representative training</span></span>
+  </a>
+  <div class="header-tools">
+    <div class="header-progress" aria-label="Course progress">
+      <div class="header-progress-label"><span id="progressLabel">Learning screens visited</span><strong id="progressPercent">0%</strong></div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+    <button class="header-continue" id="headerContinue" type="button" data-go="role">Continue <svg class="icon"><use href="#i-arrow"></use></svg></button>
+  </div>
+</header>
+
+<div class="app-layout">
+  <aside class="sidebar" aria-label="Course navigation">
+    <p class="course-label">New hire training</p>
+    <h2 class="sidebar-title">Role Orientation &amp;<br>Commercial Lines Fundamentals</h2>
+    <span class="module-chip"><svg class="icon"><use href="#i-book"></use></svg> Module 1 of 12 · 120 min</span>
+    <nav class="nav-list">
+      <button class="nav-link" type="button" data-target="welcome"><span class="nav-icon"><svg class="icon"><use href="#i-home"></use></svg></span>Module overview</button>
+      <button class="nav-link" type="button" data-target="role"><span class="nav-icon"><svg class="icon"><use href="#i-users"></use></svg></span>Role orientation</button>
+      <button class="nav-link" type="button" data-target="fundamentals"><span class="nav-icon"><svg class="icon"><use href="#i-shield"></use></svg></span>Insurance fundamentals</button>
+      <button class="nav-link" type="button" data-target="lifecycle"><span class="nav-icon"><svg class="icon"><use href="#i-refresh"></use></svg></span>Account lifecycle</button>
+      <button class="nav-link" type="button" data-target="documentation"><span class="nav-icon"><svg class="icon"><use href="#i-clipboard"></use></svg></span>EZLynx &amp; documentation</button>
+      <button class="nav-link" type="button" data-target="practice"><span class="nav-icon"><svg class="icon"><use href="#i-target"></use></svg></span>Guided practice</button>
+      <button class="nav-link" type="button" data-target="assessment"><span class="nav-icon"><svg class="icon"><use href="#i-check"></use></svg></span>Knowledge check</button>
+      <button class="nav-link" type="button" data-target="application"><span class="nav-icon"><svg class="icon"><use href="#i-briefcase"></use></svg></span>Final application</button>
+      <button class="nav-link" type="button" data-target="completion"><span class="nav-icon"><svg class="icon"><use href="#i-spark"></use></svg></span>Completion &amp; next steps</button>
+    </nav>
+    <div class="sidebar-note">
+      <strong>Learn by deciding</strong>
+      This module combines core concepts, examples, guided practice, and application—not just definitions.
+    </div>
+  </aside>
+
+  <main id="mainContent">
+    <!-- MODULE OVERVIEW -->
+    <section class="lesson-section" id="welcome" data-title="Module overview">
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="page-kicker">Module 1 of 12 · New hire training</p>
+          <h1>Role Orientation &amp; Commercial Lines Fundamentals</h1>
+          <p>Welcome to Commercial Lines Customer Service. Learn how your work supports business clients, producers, underwriters, and the full account lifecycle.</p>
+          <div class="hero-meta">
+            <span class="pill"><svg class="icon"><use href="#i-clock"></use></svg> Estimated seat time: 120 minutes</span>
+            <span class="pill"><svg class="icon"><use href="#i-briefcase"></use></svg> System: EZLynx, introduced conceptually</span>
+          </div>
+        </div>
+        <div class="hero-art">
+          <!-- Original embedded vector illustration: a business property, protection, and account documents. -->
+          <svg viewBox="0 0 470 340" role="img" aria-label="Illustration of a commercial building protected by insurance">
+            <defs>
+              <linearGradient id="sky" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#2e7280"/><stop offset="1" stop-color="#163c55"/></linearGradient>
+              <linearGradient id="shieldGrad" x1="0" x2="1"><stop stop-color="#f0c65e"/><stop offset="1" stop-color="#dc9f30"/></linearGradient>
+            </defs>
+            <rect x="18" y="16" width="434" height="306" rx="28" fill="url(#sky)"/>
+            <circle cx="375" cy="69" r="27" fill="#f3c75b" opacity=".95"/>
+            <path d="M34 247c82-45 144-48 226-16s121 18 181-15v82H34Z" fill="#194a5b" opacity=".65"/>
+            <path d="M73 237V130l91-40 91 40v107" fill="#f6f4e9" stroke="#d4e6e4" stroke-width="4"/>
+            <path d="M60 132 164 83l105 49" fill="none" stroke="#f1c663" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="91" y="151" width="42" height="38" rx="4" fill="#9dc9c8"/>
+            <rect x="146" y="151" width="37" height="86" rx="4" fill="#dba948"/>
+            <rect x="197" y="151" width="39" height="38" rx="4" fill="#9dc9c8"/>
+            <rect x="91" y="201" width="42" height="36" rx="4" fill="#9dc9c8"/>
+            <path d="M166 237v-53a12 12 0 0 1 24 0v53" fill="#8a5c28"/>
+            <path d="M320 115 382 137v42c0 38-26 64-62 77-36-13-62-39-62-77v-42Z" fill="url(#shieldGrad)" stroke="#fff0c2" stroke-width="4"/>
+            <path d="m290 177 20 20 40-45" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="302" y="245" width="104" height="46" rx="10" fill="#fff" opacity=".96"/>
+            <path d="M320 261h66M320 271h47M320 281h55" stroke="#9ab5bd" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="78" cy="75" r="14" fill="#86d0bd" opacity=".75"/>
+            <circle cx="285" cy="74" r="7" fill="#b5ddd4" opacity=".9"/>
+            <path d="M82 270h178" stroke="#a6d6cc" stroke-width="5" stroke-linecap="round" opacity=".6"/>
+          </svg>
+        </div>
+      </div>
+
+      <section class="content-block">
+        <div class="grid-2">
+          <article class="card">
+            <div class="card-header"><span class="card-icon"><svg class="icon icon-lg"><use href="#i-target"></use></svg></span><div><p class="eyebrow">Why this module matters</p><h2>Start with the work, then the system</h2></div></div>
+            <p>Before you can work effectively in EZLynx, you need to understand commercial insurance, the businesses and exposures being insured, how accounts move through the agency, and where your responsibilities begin and end.</p>
+            <p>Your work helps ensure that information is accurate, submissions are complete, quotes are properly evaluated, policies reflect agreed terms, and activities are documented and followed through.</p>
+          </article>
+          <article class="card">
+            <div class="card-header"><span class="card-icon"><svg class="icon icon-lg"><use href="#i-shield"></use></svg></span><div><p class="eyebrow">Your learning focus</p><h2>Make sound next-step decisions</h2></div></div>
+            <p>This module uses realistic commercial insurance situations so you can practice recognizing missing information, choosing appropriate next steps, and knowing when to involve an authorized person.</p>
+            <div class="callout warning"><svg class="icon"><use href="#i-warning"></use></svg><p><strong>Important:</strong> You will be assessed on application and judgment—not only on whether you can remember definitions.</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-block">
+        <p class="eyebrow">Learning objectives</p>
+        <h2>By the end of this module, you will be able to…</h2>
+        <ol class="objective-list">
+          <li>Explain the purpose and responsibilities of a Commercial Lines CSR.</li>
+          <li>Distinguish commercial lines insurance from personal lines insurance.</li>
+          <li>Identify common commercial coverage types and their basic purposes.</li>
+          <li>Recognize the major stages of a commercial account lifecycle.</li>
+          <li>Explain the roles of the client, producer, CSR, underwriter, carrier, and wholesaler.</li>
+          <li>Identify information and documentation that may be needed for a commercial account.</li>
+          <li>Recognize when clarification, escalation, or producer involvement is appropriate.</li>
+          <li>Identify the behaviors and quality standards expected in this position.</li>
+        </ol>
+      </section>
+
+      <section class="content-block">
+        <p class="eyebrow">How you will learn</p>
+        <h2>Five stages, from understanding to application</h2>
+        <div class="stage-cards">
+          <article class="stage-card"><span class="stage-word">KNOW</span><p>Learn essential concepts and terminology.</p></article>
+          <article class="stage-card"><span class="stage-word">SEE</span><p>Observe how concepts apply to account situations.</p></article>
+          <article class="stage-card"><span class="stage-word">TRY</span><p>Make decisions in guided practice.</p></article>
+          <article class="stage-card"><span class="stage-word">DO</span><p>Complete independent knowledge exercises.</p></article>
+          <article class="stage-card"><span class="stage-word">APPLY</span><p>Demonstrate understanding in an account scenario.</p></article>
+        </div>
+        <div class="callout"><svg class="icon"><use href="#i-spark"></use></svg><p><strong>System environment:</strong> EZLynx is introduced conceptually here. Detailed system navigation and hands-on account practice occur in Module 2.</p></div>
+      </section>
+
+      <div class="lesson-footer">
+        <span></span>
+        <button class="button" type="button" data-go="role">Start module <svg class="icon"><use href="#i-arrow"></use></svg></button>
+      </div>
+    </section>
+
+    <!-- ROLE ORIENTATION -->
+    <section class="lesson-section" id="role" data-title="Role orientation" hidden>
+      <p class="page-kicker">Section 1 · Understand your role</p>
+      <h1 class="page-title">The Commercial Lines CSR role</h1>
+      <p class="page-lead">You help manage commercial accounts from initial submission through policy issuance and ongoing servicing. Your work keeps the operational details moving—and helps the team deliver accurate, dependable service.</p>
+
+      <section class="content-block">
+        <div class="grid-2">
+          <article class="card">
+            <div class="card-header"><span class="card-icon"><svg class="icon icon-lg"><use href="#i-briefcase"></use></svg></span><div><p class="eyebrow">What the role supports</p><h2>Account work from start to renewal</h2></div></div>
+            <ul class="bullet-check">
+              <li>Gathering client and business information.</li>
+              <li>Preparing commercial applications and supplemental forms.</li>
+              <li>Organizing submission packages and coordinating submissions.</li>
+              <li>Monitoring status and following up on underwriting requests.</li>
+              <li>Organizing and comparing quotes for producer review.</li>
+              <li>Supporting binding, issuance, policy review, servicing, and renewals.</li>
+              <li>Maintaining accurate account records and activity documentation in EZLynx.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card-header"><span class="card-icon"><svg class="icon icon-lg"><use href="#i-chart"></use></svg></span><div><p class="eyebrow">Why the work matters</p><h2>Operational quality affects the whole account</h2></div></div>
+            <p>The producer develops the client relationship, identifies insurance needs, and guides placement strategy. You help move the operational work forward by collecting information, preparing documents, organizing submissions, and following through.</p>
+            <p>A missing document, incorrect application detail, or unrecorded follow-up can delay a quote or create problems later in the policy lifecycle.</p>
+            <p><strong>Your standard:</strong> Complete assigned work accurately, document it properly, and follow it through to the appropriate next step.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-block">
+        <p class="eyebrow">The service team</p>
+        <h2>Where do you fit in the agency?</h2>
+        <p class="section-intro">Commercial insurance involves multiple parties. Knowing who provides information, makes decisions, evaluates the risk, and issues coverage helps you route work correctly.</p>
+        <div class="diagram-shell">
+          <div class="stakeholder-flow" role="img" aria-label="Relationship among the client, producer, CSR, underwriter, and carrier">
+            <div class="role-node"><svg class="icon"><use href="#i-users"></use></svg><strong>Client / Insured</strong><span>Provides business information and makes insurance-related decisions</span></div>
+            <div class="flow-arrow"><svg class="icon"><use href="#i-arrow"></use></svg></div>
+            <div class="role-node"><svg class="icon"><use href="#i-target"></use></svg><strong>Producer</strong><span>Manages relationship, needs, and placement direction</span></div>
+            <div class="flow-arrow"><svg class="icon"><use href="#i-arrow"></use></svg></div>
+            <div class="role-node"><svg class="icon"><use href="#i-clipboard"></use></svg><strong>Commercial Lines CSR</strong><span>Coordinates account processing, documentation, and follow-up</span></div>
+            <div class="flow-arrow"><svg class="icon"><use href="#i-arrow"></use></svg></div>
+            <div class="role-node"><svg class="icon"><use href="#i-search"></use></svg><strong>Underwriter</strong><span>Evaluates the risk and determines carrier terms</span></div>
+            <div class="flow-arrow"><svg class="icon"><use href="#i-arrow"></use></svg></div>
+            <div class="role-node"><svg class="icon"><use href="#i-shield"></use></svg><strong>Carrier</strong><span>Provides insurance subject to issued policy terms</span></div>
+          </div>
+          <div class="optional-route"><strong>Wholesaler / MGA:</strong> May provide market access or underwriting capacity not directly available to the retail agency. Actual workflows vary by carrier and account.</div>
+        </div>
+        <div class="table-wrap" style="margin-top:16px">
+          <table>
+            <thead><tr><th>Role</th><th>Primary responsibility</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Client / Insured</strong></td><td>Provides business and risk information and makes insurance-related decisions.</td></tr>
+              <tr><td><strong>Producer</strong></td><td>Manages the client relationship, evaluates insurance needs, and guides placement decisions.</td></tr>
+              <tr><td><strong>Commercial Lines CSR</strong></td><td>Supports processing, documentation, submissions, follow-ups, policy review, and servicing.</td></tr>
+              <tr><td><strong>Underwriter</strong></td><td>Evaluates the risk and determines the carrier's underwriting terms and conditions.</td></tr>
+              <tr><td><strong>Insurance carrier</strong></td><td>Provides insurance coverage subject to the issued policy terms.</td></tr>
+              <tr><td><strong>Wholesaler / MGA</strong></td><td>May provide access to markets or underwriting capacity not directly available through the retail agency.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="activity-card matching-activity">
+        <div class="activity-heading"><span class="activity-number">1</span><div><p class="eyebrow">Try it · Who does what?</p><h2>Match the activity to the role most directly responsible</h2></div></div>
+        <p class="instruction">Choose one role for each activity, then check your answers.</p>
+        <div class="match-row"><label for="roleMatch1">Evaluates a commercial property risk for acceptance.</label><select id="roleMatch1" data-answer="Underwriter"><option value="">Choose a role…</option><option>CSR</option><option>Underwriter</option><option>Client</option><option>Producer</option></select></div>
+        <div class="match-row"><label for="roleMatch2">Coordinates application preparation and organizes the submission package.</label><select id="roleMatch2" data-answer="CSR"><option value="">Choose a role…</option><option>CSR</option><option>Underwriter</option><option>Client</option><option>Producer</option></select></div>
+        <div class="match-row"><label for="roleMatch3">Provides business information, property details, and requested documents.</label><select id="roleMatch3" data-answer="Client"><option value="">Choose a role…</option><option>CSR</option><option>Underwriter</option><option>Client</option><option>Producer</option></select></div>
+        <div class="match-row"><label for="roleMatch4">Guides the client's insurance placement strategy.</label><select id="roleMatch4" data-answer="Producer"><option value="">Choose a role…</option><option>CSR</option><option>Underwriter</option><option>Client</option><option>Producer</option></select></div>
+        <div class="action-row"><button class="button small-button match-check" type="button">Check matches</button></div>
+        <div class="feedback match-feedback" aria-live="polite"></div>
+      </div>
+
+      <section class="content-block">
+        <p class="eyebrow">Classification</p>
+        <h2>Commercial lines or personal lines?</h2>
+        <div class="grid-2">
+          <article class="card">
+            <div class="card-header"><span class="card-icon"><svg class="icon icon-lg"><use href="#i-home"></use></svg></span><div><h3>Personal lines</h3><p class="small">Generally protects individuals and households.</p></div></div>
+            <p>Examples include personal automobile, homeowners, personal renters, and personal umbrella insurance.</p>
+          </article>
+          <article class="card">
+            <div class="card-header"><span class="card-icon"><svg class="icon icon-lg"><use href="#i-building"></use></svg></span><div><h3>Commercial lines</h3><p class="small">Generally protects businesses and organizations.</p></div></div>
+            <p>Examples include commercial property, general liability, commercial automobile, workers' compensation, commercial umbrella, and business owners policies.</p>
+          </article>
+        </div>
+        <p class="section-intro" style="margin-top:18px">The main difference is the exposure being insured. A business may have multiple locations, buildings, operations, employees, contractors, vehicles, and contractual obligations—so complete, accurate information is especially important.</p>
+      </section>
+
+      <div class="activity-card">
+        <div class="activity-heading"><span class="activity-number">2</span><div><p class="eyebrow">Try it · Sort the situations</p><h2>Choose personal or commercial for each</h2></div></div>
+        <div class="classify-list">
+          <div class="classify-item" data-answer="personal"><span>A family wants insurance for its primary residence.</span><div class="classify-actions"><button type="button" data-kind="personal">Personal</button><button type="button" data-kind="commercial">Commercial</button></div></div>
+          <div class="classify-item" data-answer="commercial"><span>A restaurant wants insurance for its building, equipment, and operations.</span><div class="classify-actions"><button type="button" data-kind="personal">Personal</button><button type="button" data-kind="commercial">Commercial</button></div></div>
+          <div class="classify-item" data-answer="commercial"><span>A company wants coverage for a fleet of delivery vehicles.</span><div class="classify-actions"><button type="button" data-kind="personal">Personal</button><button type="button" data-kind="commercial">Commercial</button></div></div>
+          <div class="classify-item" data-answer="personal"><span>An individual wants insurance for a personal automobile.</span><div class="classify-actions"><button type="button" data-kind="personal">Personal</button><button type="button" data-kind="commercial">Commercial</button></div></div>
+          <div class="classify-item" data-answer="commercial"><span>A property management company wants coverage for an apartment building it manages.</span><div class="classify-actions"><button type="button" data-kind="personal">Personal</button><button type="button" data-kind="commercial">Commercial</button></div></div>
+        </div>
+        <div class="action-row"><button class="button small-button" type="button" id="checkClassification">Check classifications</button></div>
+        <div class="feedback" id="classificationFeedback" aria-live="polite"></div>
+        <p class="accessible-note">The apartment-building example is generally commercial lines, subject to the actual insured entity and risk arrangement.</p>
+      </div>
+
+      <section class="content-block">
+        <p class="eyebrow">Six responsibility areas</p>
+        <h2>What your work includes</h2>
+        <div class="grid-3">
+          <article class="card"><div class="card-header"><span class="card-icon"><svg class="icon"><use href="#i-search"></use></svg></span><div><h3>1. Information gathering</h3></div></div><p>Obtain business and underwriting information, request missing documents, confirm details with appropriate parties, and identify incomplete or inconsistent information.</p></article>
+          <article class="card"><div class="card-header"><span class="card-icon"><svg class="icon"><use href="#i-file"></use></svg></span><div><h3>2. Application preparation</h3></div></div><p>Prepare ACORD applications and supplemental forms, organize support documents, and check for completeness and consistency.</p></article>
+          <article class="card"><div class="card-header"><span class="card-icon"><svg class="icon"><use href="#i-arrow"></use></svg></span><div><h3>3. Submission support</h3></div></div><p>Prepare packages, submit through approved channels, monitor status, and follow up on outstanding information and underwriting requests.</p></article>
+          <article class="card"><div class="card-header"><span class="card-icon"><svg class="icon"><use href="#i-chart"></use></svg></span><div><h3>4. Quote and policy support</h3></div></div><p>Organize quotes, identify differences, support authorized binding and issuance, and compare issued documents with approved terms and source information.</p></article>
+          <article class="card"><div class="card-header"><span class="card-icon"><svg class="icon"><use href="#i-refresh"></use></svg></span><div><h3>5. Servicing and renewals</h3></div></div><p>Coordinate requests, track renewal dates, and support remarketing activities within the agency's required timeframe.</p></article>
+          <article class="card"><div class="card-header"><span class="card-icon"><svg class="icon"><use href="#i-clipboard"></use></svg></span><div><h3>6. Documentation and communication</h3></div></div><p>Record activities, attach relevant documents, maintain tasks and follow-up dates, and keep producers and teammates informed.</p></article>
+        </div>
+      </section>
+
+      <div class="activity-card matching-activity">
+        <div class="activity-heading"><span class="activity-number">3</span><div><p class="eyebrow">Try it · Responsibility check</p><h2>Match each task to a responsibility area</h2></div></div>
+        <div class="match-row"><label for="resp1">Requesting a current Statement of Values.</label><select id="resp1" data-answer="Information gathering"><option value="">Choose…</option><option>Information gathering</option><option>Application preparation</option><option>Submission support</option><option>Quote and policy support</option><option>Servicing and renewals</option><option>Documentation and communication</option></select></div>
+        <div class="match-row"><label for="resp2">Preparing an ACORD 125.</label><select id="resp2" data-answer="Application preparation"><option value="">Choose…</option><option>Information gathering</option><option>Application preparation</option><option>Submission support</option><option>Quote and policy support</option><option>Servicing and renewals</option><option>Documentation and communication</option></select></div>
+        <div class="match-row"><label for="resp3">Sending a submission to an approved carrier portal.</label><select id="resp3" data-answer="Submission support"><option value="">Choose…</option><option>Information gathering</option><option>Application preparation</option><option>Submission support</option><option>Quote and policy support</option><option>Servicing and renewals</option><option>Documentation and communication</option></select></div>
+        <div class="match-row"><label for="resp4">Identifying a difference between a quote and an issued policy.</label><select id="resp4" data-answer="Quote and policy support"><option value="">Choose…</option><option>Information gathering</option><option>Application preparation</option><option>Submission support</option><option>Quote and policy support</option><option>Servicing and renewals</option><option>Documentation and communication</option></select></div>
+        <div class="match-row"><label for="resp5">Recording an endorsement request and follow-up in EZLynx.</label><select id="resp5" data-answer="Servicing and renewals"><option value="">Choose…</option><option>Information gathering</option><option>Application preparation</option><option>Submission support</option><option>Quote and policy support</option><option>Servicing and renewals</option><option>Documentation and communication</option></select></div>
+        <div class="match-row"><label for="resp6">Attaching correspondence and updating a follow-up task.</label><select id="resp6" data-answer="Documentation and communication"><option value="">Choose…</option><option>Information gathering</option><option>Application preparation</option><option>Submission support</option><option>Quote and policy support</option><option>Servicing and renewals</option><option>Documentation and communication</option></select></div>
+        <div class="action-row"><button class="button small-button match-check" type="button">Check matches</button></div>
+        <div class="feedback match-feedback" aria-live="polite"></div>
+      </div>
+
+      <section class="content-block">
+        <p class="eyebrow">Quality standards</p>
+        <h2>What good performance looks like</h2>
+        <div class="grid-3">
+          <article class="card"><h3>Accuracy</h3><p>Information matches source documents. Forms are complete and internally consistent. Identify discrepancies rather than ignoring them.</p></article>
+          <article class="card"><h3>Ownership</h3><p>Monitor tasks to completion or handoff. Follow up on outstanding items. Communicate potential delays early.</p></article>
+          <article class="card"><h3>Organization</h3><p>Keep documents easy to locate, account records current, and tasks and suspense dates maintained.</p></article>
+          <article class="card"><h3>Communication</h3><p>Provide clear, concise, professional updates. Direct questions to the right person and escalate important issues promptly.</p></article>
+          <article class="card"><h3>Judgment</h3><p>Do not guess at missing information. Do not answer coverage questions beyond assigned authority. Raise unusual or conflicting information.</p></article>
+        </div>
+      </section>
+
+      <div class="activity-card single-choice" data-answer="c">
+        <div class="activity-heading"><span class="activity-number">4</span><div><p class="eyebrow">Scenario · Missing information</p><h2>A building's year of construction is missing</h2></div></div>
+        <p class="instruction">A producer asks you to prepare a commercial property submission. The client has completed a questionnaire, but the building's year of construction is missing. What should you do?</p>
+        <div class="choice-grid">
+          <button class="answer-option" type="button" data-value="a">A. Estimate the building's age based on its appearance.</button>
+          <button class="answer-option" type="button" data-value="b">B. Leave the field blank and submit without telling anyone.</button>
+          <button class="answer-option" type="button" data-value="c">C. Request the missing information or confirm the appropriate next step with the producer before submission.</button>
+          <button class="answer-option" type="button" data-value="d">D. Enter the current year to complete the form.</button>
+        </div>
+        <div class="action-row"><button class="button small-button check-answer" type="button">Check answer</button></div>
+        <div class="feedback choice-feedback" aria-live="polite"></div>
+        <div class="explanation">Missing underwriting information should be clarified, not guessed. If a field is unavailable or a deadline is approaching, communicate the issue and follow agency procedure for incomplete information.</div>
+      </div>
+
+      <div class="lesson-footer">
+        <button class="button secondary" type="button" data-go="welcome">Back</button>
+        <button class="button" type="button" data-go="fundamentals">Continue to fundamentals <svg class="icon"><use href="#i-arrow"></use></svg></button>
+      </div>
+    </section>
+
+    <!-- COMMERCIAL FUNDAMENTALS -->
+    <section class="lesson-section" id="fundamentals" data-title="Insurance fundamentals" hidden>
+      <p class="page-kicker">Section 2 · Know the risk and the coverage</p>
+      <h1 class="page-title">Commercial insurance fundamentals</h1>
+      <p class="page-lead">Commercial insurance helps address risks arising from business property, operations, employees, vehicles, and other organizational activities. The information collected helps producers and carriers understand the risk.</p>
+
+      <section class="content-block">
+        <div class="callout"><svg class="icon"><use href="#i-shield"></use></svg><p><strong>A commercial insurance risk</strong> is the possibility that a business may experience a loss arising from its property, operations, employees, vehicles, or other business activities—for example, a fire, a visitor's injury, a vehicle accident, or an employee's work-related injury.</p></div>
+        <p class="eyebrow">A useful starting framework</p>
+        <h2>Four basic elements of a commercial account</h2>
+        <div class="grid-4">
+          <article class="card"><div class="card-header"><span class="card-icon"><svg class="icon"><use href="#i-briefcase"></use></svg></span><div><h3>The business</h3></div></div><p>Legal name, business structure, nature of operations, years in operation, locations, and contact information.</p></article>
+          <article class="card"><div class="card-header"><span class="card-icon"><svg class="icon"><use href="#i-building"></use></svg></span><div><h3>The property</h3></div></div><p>Building details, location and occupancy, construction characteristics, values, business personal property, and equipment.</p></article>
+          <article class="card"><div class="card-header"><span class="card-icon"><svg class="icon"><use href="#i-chart"></use></svg></span><div><h3>The operations</h3></div></div><p>Products or services, employees and payroll where relevant, contractors, activities, operating territory, vehicles, and equipment.</p></article>
+          <article class="card"><div class="card-header"><span class="card-icon"><svg class="icon"><use href="#i-warning"></use></svg></span><div><h3>The exposures</h3></div></div><p>Potential property damage, bodily injury, third-party liability, employee-related and vehicle-related exposures, and other relevant risks.</p></article>
+        </div>
+        <p class="section-intro" style="margin-top:16px">A restaurant, property management company, and construction contractor have different operations and exposures. Follow the producer's instructions, applicable application requirements, and carrier underwriting guidelines; do not assume every account needs identical information.</p>
+      </section>
+
+      <div class="activity-card single-choice" data-answer="b">
+        <div class="activity-heading"><span class="activity-number">1</span><div><p class="eyebrow">Knowledge check</p><h2>What best describes a business's operations?</h2></div></div>
+        <p class="instruction">Which information is most directly related to understanding a business's operations?</p>
+        <div class="choice-grid">
+          <button class="answer-option" type="button" data-value="a">A. The client's preferred email font.</button>
+          <button class="answer-option" type="button" data-value="b">B. The services the business provides and how it performs them.</button>
+          <button class="answer-option" type="button" data-value="c">C. The producer's personal schedule.</button>
+          <button class="answer-option" type="button" data-value="d">D. The agency's office address.</button>
+        </div>
+        <div class="action-row"><button class="button small-button check-answer" type="button">Check answer</button></div>
+        <div class="feedback choice-feedback" aria-live="polite"></div>
+        <div class="explanation">The nature of operations is central to understanding a business's exposures and determining what underwriting information may be needed.</div>
+      </div>
+
+      <section class="content-block">
+        <p class="eyebrow">Common coverage types</p>
+        <h2>Recognize the general purpose</h2>
+        <p class="section-intro">These descriptions are foundational only. Actual coverage depends on policy wording, endorsements, limits, conditions, exclusions, facts, and applicable requirements.</p>
+        <div class="grid-4">
+          <article class="card coverage-card"><span class="card-icon"><svg class="icon icon-lg"><use href="#i-building"></use></svg></span><h3>Commercial Property</h3><p>Can provide coverage for insured business property against covered causes of loss, subject to policy terms. Items may include buildings, business personal property, equipment, furniture, inventory, and certain improvements.</p><span class="mini-label">Property exposure</span></article>
+          <article class="card coverage-card"><span class="card-icon"><svg class="icon icon-lg"><use href="#i-shield"></use></svg></span><h3>Commercial General Liability</h3><p>Generally addresses certain third-party bodily injury, property damage, and personal and advertising injury liability exposures, subject to policy terms and exclusions.</p><span class="mini-label">Third-party liability</span></article>
+          <article class="card coverage-card"><span class="card-icon"><svg class="icon icon-lg"><use href="#i-car"></use></svg></span><h3>Commercial Automobile</h3><p>May address covered liability and physical damage exposures involving vehicles used in business operations.</p><span class="mini-label">Business vehicles</span></article>
+          <article class="card coverage-card"><span class="card-icon"><svg class="icon icon-lg"><use href="#i-heart"></use></svg></span><h3>Workers' Compensation</h3><p>Generally addresses statutory benefits for employee work-related injury or illness, subject to applicable law and policy terms.</p><span class="mini-label">Employee exposure</span></article>
+          <article class="card coverage-card"><span class="card-icon"><svg class="icon icon-lg"><use href="#i-umbrella"></use></svg></span><h3>Commercial Umbrella / Excess</h3><p>May provide additional liability limits above certain underlying policies, subject to its terms and attachment requirements.</p><span class="mini-label">Additional limits</span></article>
+          <article class="card coverage-card"><span class="card-icon"><svg class="icon icon-lg"><use href="#i-briefcase"></use></svg></span><h3>Business Owners Policy (BOP)</h3><p>A packaged policy that may combine certain property and liability coverages for eligible businesses.</p><span class="mini-label">Packaged product</span></article>
+          <article class="card coverage-card"><span class="card-icon"><svg class="icon icon-lg"><use href="#i-file"></use></svg></span><h3>Professional Liability</h3><p>May address certain claims alleging errors, omissions, or professional negligence arising from professional services.</p><span class="mini-label">Professional services</span></article>
+          <article class="card coverage-card"><span class="card-icon"><svg class="icon icon-lg"><use href="#i-cloud"></use></svg></span><h3>Cyber Insurance</h3><p>May address certain cyber-related incidents and associated expenses or liabilities, depending on the policy.</p><span class="mini-label">Cyber exposure</span></article>
+        </div>
+      </section>
+
+      <section class="content-block">
+        <div class="grid-2">
+          <div>
+            <div class="activity-card multi-check" data-answer="address,year,occupancy,values,roof">
+              <div class="activity-heading"><span class="activity-number">2</span><div><p class="eyebrow">Try it · Property information</p><h2>A small warehouse submission</h2></div></div>
+              <p class="instruction">Which information would be useful to collect or confirm? Select all that apply.</p>
+              <div class="multi-options">
+                <button class="multi-option" type="button" data-value="address">Property address</button>
+                <button class="multi-option" type="button" data-value="year">Year of construction</button>
+                <button class="multi-option" type="button" data-value="occupancy">Building occupancy</button>
+                <button class="multi-option" type="button" data-value="values">Building and contents values</button>
+                <button class="multi-option" type="button" data-value="roof">Roof information</button>
+                <button class="multi-option" type="button" data-value="color">The owner's favorite color</button>
+              </div>
+              <div class="action-row"><button class="button small-button check-multi" type="button">Check selections</button></div>
+              <div class="feedback multi-feedback" aria-live="polite"></div>
+              <div class="explanation">The first five items may be relevant underwriting information. Exact requirements depend on the carrier and coverage requested. A Statement of Values (SOV) typically organizes insured property locations and reported values.</div>
+            </div>
+          </div>
+          <div>
+            <div class="activity-card single-choice" data-answer="b">
+              <div class="activity-heading"><span class="activity-number">3</span><div><p class="eyebrow">Knowledge check · Liability</p><h2>A visitor slips at a business</h2></div></div>
+              <p class="instruction">A visitor alleges they were injured after slipping inside a business premises. Which coverage type is most directly associated with this exposure?</p>
+              <div class="choice-grid">
+                <button class="answer-option" type="button" data-value="a">A. Commercial Property</button>
+                <button class="answer-option" type="button" data-value="b">B. Commercial General Liability</button>
+                <button class="answer-option" type="button" data-value="c">C. Workers' Compensation</button>
+                <button class="answer-option" type="button" data-value="d">D. Commercial Automobile</button>
+              </div>
+              <div class="action-row"><button class="button small-button check-answer" type="button">Check answer</button></div>
+              <div class="feedback choice-feedback" aria-live="polite"></div>
+              <div class="explanation">General liability is commonly associated with certain third-party bodily injury claims. Actual coverage depends on the policy and circumstances. Do not decide whether a specific incident is covered.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="activity-card matching-activity">
+        <div class="activity-heading"><span class="activity-number">4</span><div><p class="eyebrow">Try it · Coverage recognition</p><h2>Match the situation to the most relevant coverage type</h2></div></div>
+        <div class="match-row"><label for="cov1">A company vehicle is involved in an accident.</label><select id="cov1" data-answer="Commercial Automobile"><option value="">Choose coverage…</option><option>Commercial Automobile</option><option>Workers' Compensation</option><option>Commercial General Liability</option><option>Umbrella / Excess Liability</option><option>Professional Liability</option><option>Cyber Insurance</option></select></div>
+        <div class="match-row"><label for="cov2">An employee is injured while performing work duties.</label><select id="cov2" data-answer="Workers' Compensation"><option value="">Choose coverage…</option><option>Commercial Automobile</option><option>Workers' Compensation</option><option>Commercial General Liability</option><option>Umbrella / Excess Liability</option><option>Professional Liability</option><option>Cyber Insurance</option></select></div>
+        <div class="match-row"><label for="cov3">A business faces a third-party bodily injury allegation.</label><select id="cov3" data-answer="Commercial General Liability"><option value="">Choose coverage…</option><option>Commercial Automobile</option><option>Workers' Compensation</option><option>Commercial General Liability</option><option>Umbrella / Excess Liability</option><option>Professional Liability</option><option>Cyber Insurance</option></select></div>
+        <div class="match-row"><label for="cov4">A business wants additional liability limits above certain underlying policies.</label><select id="cov4" data-answer="Umbrella / Excess Liability"><option value="">Choose coverage…</option><option>Commercial Automobile</option><option>Workers' Compensation</option><option>Commercial General Liability</option><option>Umbrella / Excess Liability</option><option>Professional Liability</option><option>Cyber Insurance</option></select></div>
+        <div class="match-row"><label for="cov5">A consultant faces an allegation of professional negligence.</label><select id="cov5" data-answer="Professional Liability"><option value="">Choose coverage…</option><option>Commercial Automobile</option><option>Workers' Compensation</option><option>Commercial General Liability</option><option>Umbrella / Excess Liability</option><option>Professional Liability</option><option>Cyber Insurance</option></select></div>
+        <div class="match-row"><label for="cov6">A business wants protection for certain cyber incidents.</label><select id="cov6" data-answer="Cyber Insurance"><option value="">Choose coverage…</option><option>Commercial Automobile</option><option>Workers' Compensation</option><option>Commercial General Liability</option><option>Umbrella / Excess Liability</option><option>Professional Liability</option><option>Cyber Insurance</option></select></div>
+        <div class="action-row"><button class="button small-button match-check" type="button">Check matches</button></div>
+        <div class="feedback match-feedback" aria-live="polite"></div>
+      </div>
+
+      <section class="content-block">
+        <p class="eyebrow">Quote terminology</p>
+        <h2>Four terms to recognize</h2>
+        <div class="term-grid">
+          <article class="term-card"><strong>Limit</strong><p>The maximum amount an insurer may pay for a covered loss or category of loss, subject to policy terms and conditions.</p></article>
+          <article class="term-card"><strong>Deductible</strong><p>The amount or portion of a covered loss that the insured may be responsible for before the insurer pays, depending on policy structure.</p></article>
+          <article class="term-card"><strong>Premium</strong><p>The price charged for the insurance coverage.</p></article>
+          <article class="term-card"><strong>Exclusion</strong><p>A policy provision identifying a loss, condition, or circumstance that is not covered or is otherwise restricted.</p></article>
+        </div>
+        <div class="callout warning"><svg class="icon"><use href="#i-warning"></use></svg><p>Product names and quote summaries do not tell the whole story. Actual protection is defined by policy wording, endorsements, limits, conditions, and exclusions. The CSR identifies and organizes differences; authorized personnel advise clients on coverage choices.</p></div>
+      </section>
+
+      <div class="activity-card single-choice" data-answer="b">
+        <div class="activity-heading"><span class="activity-number">5</span><div><p class="eyebrow">Scenario · Compare beyond premium</p><h2>Is the lower premium automatically better?</h2></div></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Illustrative item</th><th>Quote A</th><th>Quote B</th></tr></thead>
+            <tbody><tr><td>Premium</td><td>$4,800</td><td>$5,200</td></tr><tr><td>Property limit</td><td>$1,000,000</td><td>$1,000,000</td></tr><tr><td>Deductible</td><td>$10,000</td><td>$5,000</td></tr><tr><td>Additional exclusion</td><td>Listed</td><td>Not listed in the summary</td></tr></tbody>
+          </table>
+        </div>
+        <p class="instruction" style="margin-top:14px">Is Quote A automatically the better option because it has the lower premium?</p>
+        <div class="choice-grid">
+          <button class="answer-option" type="button" data-value="a">A. Yes. The lower premium determines the best quote.</button>
+          <button class="answer-option" type="button" data-value="b">B. No. Identify differences in deductibles, exclusions, conditions, coverage forms, and other terms for producer review.</button>
+        </div>
+        <div class="action-row"><button class="button small-button check-answer" type="button">Check answer</button></div>
+        <div class="feedback choice-feedback" aria-live="polite"></div>
+        <div class="explanation">Premium is only one comparison factor. A quote summary may not contain everything needed to evaluate coverage. Identify differences and route them to the producer for review.</div>
+      </div>
+
+      <div class="lesson-footer">
+        <button class="button secondary" type="button" data-go="role">Back</button>
+        <button class="button" type="button" data-go="lifecycle">Continue to account lifecycle <svg class="icon"><use href="#i-arrow"></use></svg></button>
+      </div>
+    </section>
+
+    <!-- ACCOUNT LIFECYCLE -->
+    <section class="lesson-section" id="lifecycle" data-title="Account lifecycle" hidden>
+      <p class="page-kicker">Section 3 · Understand sequence and dependencies</p>
+      <h1 class="page-title">The commercial account lifecycle</h1>
+      <p class="page-lead">A commercial account moves through a series of connected stages. The quality of early information, documentation, and follow-up affects what happens later.</p>
+
+      <div class="process-visual">
+        <p class="eyebrow">A typical account journey</p>
+        <ol class="process-list">
+          <li><span class="process-dot">1</span><strong>Gather information</strong><span>Understand the client and risk</span></li>
+          <li><span class="process-dot">2</span><strong>Prepare applications</strong><span>Complete forms and supporting files</span></li>
+          <li><span class="process-dot">3</span><strong>Prepare submission</strong><span>Organize the package</span></li>
+          <li><span class="process-dot">4</span><strong>Submit to markets</strong><span>Use approved channels</span></li>
+          <li><span class="process-dot">5</span><strong>Underwriting review</strong><span>Monitor requests and status</span></li>
+          <li><span class="process-dot">6</span><strong>Review quotes</strong><span>Identify terms and differences</span></li>
+          <li><span class="process-dot">7</span><strong>Placement decision</strong><span>Producer and client discussion</span></li>
+          <li><span class="process-dot">8</span><strong>Binding support</strong><span>Follow authorization process</span></li>
+          <li><span class="process-dot">9</span><strong>Policy issuance</strong><span>Carrier issues documents</span></li>
+          <li><span class="process-dot">10</span><strong>Quality review</strong><span>Compare issued documents</span></li>
+          <li><span class="process-dot">11</span><strong>Service &amp; renew</strong><span>Maintain through the policy term</span></li>
+        </ol>
+      </div>
+
+      <div class="activity-card matching-activity">
+        <div class="activity-heading"><span class="activity-number">1</span><div><p class="eyebrow">Try it · Sequence the work</p><h2>Put these activities in order</h2></div></div>
+        <p class="instruction">For each position, choose the activity that belongs there.</p>
+        <div class="match-row"><label for="seq1"><strong>1st</strong></label><select id="seq1" data-answer="Information gathering"><option value="">Choose an activity…</option><option>Information gathering</option><option>Application preparation</option><option>Carrier submission</option><option>Quote review</option><option>Policy issuance</option></select></div>
+        <div class="match-row"><label for="seq2"><strong>2nd</strong></label><select id="seq2" data-answer="Application preparation"><option value="">Choose an activity…</option><option>Information gathering</option><option>Application preparation</option><option>Carrier submission</option><option>Quote review</option><option>Policy issuance</option></select></div>
+        <div class="match-row"><label for="seq3"><strong>3rd</strong></label><select id="seq3" data-answer="Carrier submission"><option value="">Choose an activity…</option><option>Information gathering</option><option>Application preparation</option><option>Carrier submission</option><option>Quote review</option><option>Policy issuance</option></select></div>
+        <div class="match-row"><label for="seq4"><strong>4th</strong></label><select id="seq4" data-answer="Quote review"><option value="">Choose an activity…</option><option>Information gathering</option><option>Application preparation</option><option>Carrier submission</option><option>Quote review</option><option>Policy issuance</option></select></div>
+        <div class="match-row"><label for="seq5"><strong>5th</strong></label><select id="seq5" data-answer="Policy issuance"><option value="">Choose an activity…</option><option>Information gathering</option><option>Application preparation</option><option>Carrier submission</option><option>Quote review</option><option>Policy issuance</option></select></div>
+        <div class="action-row"><button class="button small-button match-check" type="button">Check sequence</button></div>
+        <div class="feedback match-feedback" aria-live="polite"></div>
+      </div>
+
+      <section class="content-block">
+        <p class="eyebrow">What happens at each stage</p>
+        <h2>From first information to ongoing service</h2>
+        <div class="card">
+          <article class="lifecycle-detail"><span class="detail-number">1</span><div><h3>Information gathering</h3><p>Collect named insured and business details, operations, locations, property information, requested coverages, values and exposures, prior insurance, loss history, and supporting documents. Missing, inconsistent, or unclear information must be clarified—not invented or assumed.</p></div></article>
+          <article class="lifecycle-detail"><span class="detail-number">2</span><div><h3>Application preparation</h3><p>Applications organize and communicate underwriting information. Common ACORD forms you may encounter include the following. Exact forms and requirements depend on the requested coverage and carrier requirements.</p>
+            <div class="table-wrap" style="margin-top:10px"><table><thead><tr><th>Form</th><th>Common association</th></tr></thead><tbody>
+              <tr><td>ACORD 125</td><td>Commercial Insurance Application</td></tr>
+              <tr><td>ACORD 126</td><td>Commercial General Liability Section</td></tr>
+              <tr><td>ACORD 127</td><td>Business Auto Section</td></tr>
+              <tr><td>ACORD 130</td><td>Workers Compensation Application</td></tr>
+              <tr><td>ACORD 131</td><td>Umbrella / Excess Section</td></tr>
+              <tr><td>ACORD 140</td><td>Property Section</td></tr>
+            </tbody></table></div>
+            <p class="small" style="margin-top:10px">Forms, names, purposes, and versions must be validated by the agency's commercial lines subject matter expert before publishing or use.</p>
+          </div></article>
+          <article class="lifecycle-detail"><span class="detail-number">3–5</span><div><h3>Submission and underwriting</h3><p>A submission package may contain completed applications, supplemental questionnaires, a Statement of Values, loss runs, inspection reports, replacement cost estimates, and other requested documents. Use the approved channel and intended market. A carrier or wholesaler may request information, ask questions, provide a quote, decline the risk, or indicate the risk is outside its underwriting appetite. Monitor status and keep the producer informed of outstanding items and potential delays.</p></div></article>
+          <article class="lifecycle-detail"><span class="detail-number">6–8</span><div><h3>Quote review, placement, and binding support</h3><p>Quotes may include premium, limits, deductibles, exclusions, conditions, effective dates, subjectivities, endorsements, and payment terms. A quote is not an issued policy and does not by itself confirm coverage is bound. The producer and client make the appropriate placement decisions. Follow agency authorization and carrier requirements; do not confirm coverage unless required authorization and confirmation have been received.</p></div></article>
+          <article class="lifecycle-detail"><span class="detail-number">9–10</span><div><h3>Policy issuance and quality review</h3><p>After binding, the carrier may issue declarations, forms, endorsements, schedules, certificates, or other documents. Check issued documents against the accepted quote, binding instructions, application information, approved changes, and relevant supporting documents. Verify items such as named insured, policy number, effective dates, locations, limits, deductibles, and requested endorsements. Document discrepancies and notify the appropriate person; do not assume issued documents are correct simply because they came from the carrier.</p></div></article>
+          <article class="lifecycle-detail"><span class="detail-number">11</span><div><h3>Servicing and renewal</h3><p>Common servicing activities include endorsement, Certificate of Insurance, Evidence of Property, mortgagee, and additional insured requests; contact and account updates; and recording client and carrier communications. Renewal work includes monitoring expiration, requesting updated information, reviewing changes, preparing documents, and supporting remarketing. <strong>Job expectation:</strong> help initiate renewal remarketing approximately 90–120 days before expiration, in line with agency process and account requirements.</p></div></article>
+        </div>
+      </section>
+
+      <div class="callout warning"><svg class="icon"><use href="#i-warning"></use></svg><p>Carrier submission and binding requirements vary. Do not present one workflow as universal. Follow the agency's procedures and the specific carrier's requirements for each account.</p></div>
+
+      <div class="lesson-footer">
+        <button class="button secondary" type="button" data-go="fundamentals">Back</button>
+        <button class="button" type="button" data-go="documentation">Continue to documentation <svg class="icon"><use href="#i-arrow"></use></svg></button>
+      </div>
+    </section>
+
+    <!-- EZLYNX AND DOCUMENTATION -->
+    <section class="lesson-section" id="documentation" data-title="EZLynx and documentation" hidden>
+      <p class="page-kicker">Section 4 · Make account work visible</p>
+      <h1 class="page-title">EZLynx &amp; documentation expectations</h1>
+      <p class="page-lead">A well-maintained account record helps another team member understand what has happened, what is outstanding, who owns the next step, and when it is due.</p>
+
+      <section class="content-block">
+        <div class="grid-2">
+          <article class="card">
+            <div class="card-header"><span class="card-icon"><svg class="icon icon-lg"><use href="#i-clipboard"></use></svg></span><div><p class="eyebrow">Agency management system</p><h2>More than file storage</h2></div></div>
+            <p>EZLynx is the agency management system used in this training. It supports the organization of account information, documents, communications, and workflow activities.</p>
+            <ul class="bullet-check">
+              <li>Accurate client and policy records.</li>
+              <li>Relevant account documents, quotes, binders, policies, and correspondence.</li>
+              <li>Activity notes and follow-up tasks.</li>
+              <li>Suspense dates and renewal reminders.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card-header"><span class="card-icon"><svg class="icon icon-lg"><use href="#i-clock"></use></svg></span><div><p class="eyebrow">Work standard</p><h2>Document meaningful activity the same day</h2></div></div>
+            <p>Follow the agency's documentation policy. A useful record lets a teammate understand the account without repeating work or contacting the same person unnecessarily.</p>
+            <p>Detailed EZLynx navigation, account screens, document location, activity recording, and task management are covered in Module 2.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-block">
+        <p class="eyebrow">The five-question activity note</p>
+        <h2>What should a useful record explain?</h2>
+        <div class="grid-3">
+          <article class="card"><h3>Who?</h3><p>Who was involved or contacted?</p></article>
+          <article class="card"><h3>What?</h3><p>What happened, was sent, or was requested?</p></article>
+          <article class="card"><h3>When?</h3><p>When did the activity occur?</p></article>
+          <article class="card"><h3>Status?</h3><p>What is the current status of the item?</p></article>
+          <article class="card"><h3>Next step?</h3><p>What action is needed, by whom, and by when?</p></article>
+        </div>
+      </section>
+
+      <section class="content-block">
+        <p class="eyebrow">Before and after</p>
+        <h2>Compare the quality of these activity notes</h2>
+        <div class="note-comparison">
+          <article class="note-sample bad"><span class="tag">Needs improvement</span><p class="note-text">“Called carrier. Waiting.”</p><p class="small">This does not explain who was contacted, what was discussed, what is pending, or what happens next.</p></article>
+          <article class="note-sample good"><span class="tag" style="color:#176746;background:#e8f6ee">Actionable note</span><p class="note-text">“November 12 – Contacted carrier underwriter regarding the outstanding property inspection report for the ABC Warehouse account. Underwriter confirmed the report is still pending. Follow up with the carrier on November 14 if the report has not been received. Producer notified of the current status.”</p><p class="small">This makes the activity, status, communication, and follow-up date clear.</p></article>
+        </div>
+      </section>
+
+      <div class="activity-card single-choice" data-answer="b">
+        <div class="activity-heading"><span class="activity-number">1</span><div><p class="eyebrow">Try it · Documentation quality</p><h2>Which note is more useful to the next teammate?</h2></div></div>
+        <div class="choice-grid">
+          <button class="answer-option" type="button" data-value="a">A. “Called carrier. Waiting.”</button>
+          <button class="answer-option" type="button" data-value="b">B. “Nov 12 – Contacted the carrier underwriter about the pending inspection report. Report is still outstanding. Follow up Nov 14 if not received; producer updated.”</button>
+        </div>
+        <div class="action-row"><button class="button small-button check-answer" type="button">Check answer</button></div>
+        <div class="feedback choice-feedback" aria-live="polite"></div>
+        <div class="explanation">A useful activity note is specific, objective, and action-oriented. Include what happened, the status, and the next required action. Follow agency privacy and retention policies.</div>
+      </div>
+
+      <section class="content-block">
+        <p class="eyebrow">When something is unclear</p>
+        <h2>Use this decision sequence</h2>
+        <div class="stop-flow">
+          <article class="stop-step"><h3>STOP</h3><p>Do not continue with an action if important information is missing or conflicting.</p></article>
+          <article class="stop-step"><h3>VERIFY</h3><p>Check available documents and request clarification from the appropriate person.</p></article>
+          <article class="stop-step"><h3>DOCUMENT</h3><p>Record the issue and the steps taken.</p></article>
+          <article class="stop-step"><h3>ESCALATE OR PROCEED</h3><p>Refer the matter to the producer, supervisor, carrier, or designated contact when required. Proceed only when the next step is clear and authorized.</p></article>
+        </div>
+        <div class="callout"><svg class="icon"><use href="#i-spark"></use></svg><p>You are not expected to know every answer immediately. Professional judgment includes recognizing when you do not have enough information to proceed safely. If an application and Statement of Values show different addresses, do not choose one yourself—identify the discrepancy and obtain clarification.</p></div>
+      </section>
+
+      <div class="lesson-footer">
+        <button class="button secondary" type="button" data-go="lifecycle">Back</button>
+        <button class="button" type="button" data-go="practice">Continue to guided practice <svg class="icon"><use href="#i-arrow"></use></svg></button>
+      </div>
+    </section>
+
+    <!-- GUIDED PRACTICE -->
+    <section class="lesson-section" id="practice" data-title="Guided practice" hidden>
+      <p class="page-kicker">Section 5 · Try the work in a low-risk environment</p>
+      <h1 class="page-title">Guided practice: review an account</h1>
+      <p class="page-lead">Use the concepts from this module to identify account issues, choose a safe next step, and document the status clearly.</p>
+
+      <div class="scenario-box">
+        <div class="scenario-head"><span class="card-icon"><svg class="icon icon-lg"><use href="#i-building"></use></svg></span><div><p class="eyebrow">Account assignment</p><h2>ABC Property Holdings LLC</h2></div></div>
+        <p><strong>Business:</strong> Owns and operates a small commercial property portfolio.</p>
+        <p><strong>Requested insurance:</strong> Commercial Property and General Liability.</p>
+        <p><strong>Locations:</strong> Three commercial properties.</p>
+        <p><strong>Producer instruction:</strong> Prepare the account information for submission to appropriate insurance markets.</p>
+        <p><strong>Documents received:</strong> Business name and contact details, addresses for all three properties, a partially completed property questionnaire, a Statement of Values, and prior insurance information.</p>
+        <p><strong>Initial review finds:</strong> One property's year of construction is missing; one building value differs between the questionnaire and Statement of Values; loss runs have not been provided; and the requested effective date is approaching.</p>
+      </div>
+
+      <div class="activity-card multi-check" id="practiceIssues" data-answer="year,values,lossruns" data-complete="practiceTask1">
+        <div class="activity-heading"><span class="activity-number">1</span><div><p class="eyebrow">Task 1 · Identify the issues</p><h2>What needs attention before the submission proceeds?</h2></div></div>
+        <p class="instruction">Select all items that require attention.</p>
+        <div class="multi-options">
+          <button class="multi-option" type="button" data-value="year">Missing year of construction</button>
+          <button class="multi-option" type="button" data-value="values">Conflicting building values</button>
+          <button class="multi-option" type="button" data-value="lossruns">Missing loss runs</button>
+          <button class="multi-option" type="button" data-value="name">The client's business name (no discrepancy is identified)</button>
+          <button class="multi-option" type="button" data-value="office">The producer's office location</button>
+        </div>
+        <div class="action-row"><button class="button small-button check-multi" type="button">Check selections</button></div>
+        <div class="feedback multi-feedback" aria-live="polite"></div>
+        <div class="explanation">The missing year, conflicting building values, and missing loss runs may affect underwriting evaluation and submission completeness. Check the business name for accuracy, but the scenario identifies no discrepancy. The producer's office location is not automatically an underwriting requirement.</div>
+      </div>
+
+      <div class="activity-card single-choice" data-answer="c" data-complete="practiceTask2">
+        <div class="activity-heading"><span class="activity-number">2</span><div><p class="eyebrow">Task 2 · Choose the next step</p><h2>What should you do?</h2></div></div>
+        <div class="choice-grid">
+          <button class="answer-option" type="button" data-value="a">A. Submit everything immediately and wait for the underwriter to identify missing items.</button>
+          <button class="answer-option" type="button" data-value="b">B. Correct the values yourself using the lower amount.</button>
+          <button class="answer-option" type="button" data-value="c">C. Organize the outstanding items, request clarification or missing documents, and notify the producer about potential timeline impact.</button>
+          <button class="answer-option" type="button" data-value="d">D. Remove the incomplete property from the submission without approval.</button>
+        </div>
+        <div class="action-row"><button class="button small-button check-answer" type="button">Check answer</button></div>
+        <div class="feedback choice-feedback" aria-live="polite"></div>
+        <div class="explanation">Identify missing and conflicting information, coordinate clarification, and communicate potential delays. Do not make unsupported changes or remove risks without authorization.</div>
+      </div>
+
+      <div class="activity-card">
+        <div class="activity-heading"><span class="activity-number">3</span><div><p class="eyebrow">Task 3 · Document the status</p><h2>Write an action-oriented activity note</h2></div></div>
+        <p class="instruction">Include the documents received, missing information, discrepancy, next action, and who needs to be informed.</p>
+        <label class="form-label" for="practiceNote">Your activity note</label>
+        <textarea id="practiceNote" placeholder="Write a concise account note…"></textarea>
+        <div class="action-row"><button class="button small-button" type="button" id="reviewPracticeNote">Review my note</button></div>
+        <div class="feedback" id="practiceNoteFeedback" aria-live="polite"></div>
+        <div class="model-answer" id="practiceNoteModel" hidden>
+          <h3>Model answer</h3>
+          <p>“Received the ABC Property Holdings LLC property questionnaire, Statement of Values, property addresses, and prior insurance information. The year of construction for one location is missing, and the building value for one property differs between the questionnaire and Statement of Values. Loss runs have not yet been received. Requested clarification and outstanding documents through the appropriate contact. Producer to be updated regarding the outstanding items and potential impact on the submission timeline. Follow-up required on receipt of the missing information.”</p>
+          <p class="small">A strong activity note is specific, objective, and action-oriented. It helps the next person understand the current status without repeating the work.</p>
+        </div>
+      </div>
+
+      <div class="callout warning"><svg class="icon"><use href="#i-clock"></use></svg><p>The effective date is approaching. Raise the potential timeline impact early; do not guess, silently omit information, or imply the submission is ready when material items remain unresolved.</p></div>
+
+      <div class="lesson-footer">
+        <button class="button secondary" type="button" data-go="documentation">Back</button>
+        <button class="button" type="button" data-go="assessment">Continue to knowledge check <svg class="icon"><use href="#i-arrow"></use></svg></button>
+      </div>
+    </section>
+
+    <!-- KNOWLEDGE CHECK -->
+    <section class="lesson-section" id="assessment" data-title="Knowledge check" hidden>
+      <p class="page-kicker">Section 6 · Independent knowledge check</p>
+      <h1 class="page-title">Check your understanding</h1>
+      <p class="page-lead">Answer all 10 questions independently. You may review the learning content before submitting. Recommended passing score: <strong>80%</strong>.</p>
+
+      <form id="knowledgeQuiz">
+        <div class="quiz-item" data-answer="b">
+          <p class="quiz-question">1. What is the primary purpose of a Commercial Lines CSR?</p>
+          <label class="quiz-option"><input type="radio" name="q1" value="a"> Independently determine all coverage recommendations.</label>
+          <label class="quiz-option"><input type="radio" name="q1" value="b"> Support the processing, documentation, submission, follow-up, and servicing of commercial insurance accounts.</label>
+          <label class="quiz-option"><input type="radio" name="q1" value="c"> Approve insurance risks on behalf of carriers.</label>
+          <label class="quiz-option"><input type="radio" name="q1" value="d"> Set insurance premiums.</label>
+          <div class="quiz-feedback"></div><div class="explanation">The CSR supports account processing and service. Coverage recommendations, underwriting decisions, and premium setting are not the CSR's general role.</div>
+        </div>
+        <div class="quiz-item" data-answer="c">
+          <p class="quiz-question">2. Which role generally evaluates a risk and determines underwriting terms on behalf of the carrier?</p>
+          <label class="quiz-option"><input type="radio" name="q2" value="a"> Client</label>
+          <label class="quiz-option"><input type="radio" name="q2" value="b"> CSR</label>
+          <label class="quiz-option"><input type="radio" name="q2" value="c"> Underwriter</label>
+          <label class="quiz-option"><input type="radio" name="q2" value="d"> Receptionist</label>
+          <div class="quiz-feedback"></div><div class="explanation">The underwriter evaluates the risk on behalf of the carrier and determines underwriting terms.</div>
+        </div>
+        <div class="quiz-item" data-answer="b">
+          <p class="quiz-question">3. Which coverage is most directly associated with certain third-party bodily injury and property damage liability exposures?</p>
+          <label class="quiz-option"><input type="radio" name="q3" value="a"> Commercial Property</label>
+          <label class="quiz-option"><input type="radio" name="q3" value="b"> Commercial General Liability</label>
+          <label class="quiz-option"><input type="radio" name="q3" value="c"> Workers' Compensation</label>
+          <label class="quiz-option"><input type="radio" name="q3" value="d"> Commercial Automobile</label>
+          <div class="quiz-feedback"></div><div class="explanation">General liability is commonly associated with certain third-party bodily injury and property damage exposures. Actual coverage depends on policy terms and circumstances.</div>
+        </div>
+        <div class="quiz-item" data-answer="a">
+          <p class="quiz-question">4. What is a Statement of Values commonly used for?</p>
+          <label class="quiz-option"><input type="radio" name="q4" value="a"> Listing insured property locations and reported values.</label>
+          <label class="quiz-option"><input type="radio" name="q4" value="b"> Recording employee attendance.</label>
+          <label class="quiz-option"><input type="radio" name="q4" value="c"> Calculating the CSR's performance score.</label>
+          <label class="quiz-option"><input type="radio" name="q4" value="d"> Listing carrier contact information only.</label>
+          <div class="quiz-feedback"></div><div class="explanation">An SOV typically organizes insured property locations and their reported values.</div>
+        </div>
+        <div class="quiz-item" data-answer="a">
+          <p class="quiz-question">5. Which ACORD form is commonly associated with commercial property information?</p>
+          <label class="quiz-option"><input type="radio" name="q5" value="a"> ACORD 140</label>
+          <label class="quiz-option"><input type="radio" name="q5" value="b"> ACORD 130</label>
+          <label class="quiz-option"><input type="radio" name="q5" value="c"> ACORD 127</label>
+          <label class="quiz-option"><input type="radio" name="q5" value="d"> ACORD 131</label>
+          <div class="quiz-feedback"></div><div class="explanation">ACORD 140 is commonly associated with the Property Section. Confirm the forms and versions used by your agency.</div>
+        </div>
+        <div class="quiz-item" data-answer="c">
+          <p class="quiz-question">6. You identify conflicting building values in two account documents. What should you do?</p>
+          <label class="quiz-option"><input type="radio" name="q6" value="a"> Choose the higher value.</label>
+          <label class="quiz-option"><input type="radio" name="q6" value="b"> Choose the lower value.</label>
+          <label class="quiz-option"><input type="radio" name="q6" value="c"> Identify the discrepancy and obtain clarification.</label>
+          <label class="quiz-option"><input type="radio" name="q6" value="d"> Delete one of the documents.</label>
+          <div class="quiz-feedback"></div><div class="explanation">Do not choose or change a material value without support. Identify the inconsistency, verify the source, and obtain clarification.</div>
+        </div>
+        <div class="quiz-item" data-answer="b">
+          <p class="quiz-question">7. A quote has a lower premium but a higher deductible than another quote. What should you do?</p>
+          <label class="quiz-option"><input type="radio" name="q7" value="a"> Automatically recommend the lower premium.</label>
+          <label class="quiz-option"><input type="radio" name="q7" value="b"> Identify the difference and include it in the comparison for producer review.</label>
+          <label class="quiz-option"><input type="radio" name="q7" value="c"> Ignore the deductible.</label>
+          <label class="quiz-option"><input type="radio" name="q7" value="d"> Change the deductible to make the quotes match.</label>
+          <div class="quiz-feedback"></div><div class="explanation">Identify differences in premiums, deductibles, exclusions, conditions, and other terms. The producer reviews the options with the client.</div>
+        </div>
+        <div class="quiz-item" data-answer="c">
+          <p class="quiz-question">8. When should renewal remarketing activities generally begin for this role?</p>
+          <label class="quiz-option"><input type="radio" name="q8" value="a"> One week before expiration</label>
+          <label class="quiz-option"><input type="radio" name="q8" value="b"> 30 days before expiration</label>
+          <label class="quiz-option"><input type="radio" name="q8" value="c"> Approximately 90–120 days before expiration</label>
+          <label class="quiz-option"><input type="radio" name="q8" value="d"> Only after the policy expires</label>
+          <div class="quiz-feedback"></div><div class="explanation">The job expectation is to help initiate remarketing approximately 90–120 days before expiration, in line with agency process and account needs.</div>
+        </div>
+        <div class="quiz-item" data-answer="c">
+          <p class="quiz-question">9. What should a useful EZLynx activity record include?</p>
+          <label class="quiz-option"><input type="radio" name="q9" value="a"> Only the date of the interaction.</label>
+          <label class="quiz-option"><input type="radio" name="q9" value="b"> Only the name of the person contacted.</label>
+          <label class="quiz-option"><input type="radio" name="q9" value="c"> What happened, current status, and the next required action.</label>
+          <label class="quiz-option"><input type="radio" name="q9" value="d"> Personal opinions about the client.</label>
+          <div class="quiz-feedback"></div><div class="explanation">Useful notes explain who, what, when, current status, and the next action—including who owns it and when it is due.</div>
+        </div>
+        <div class="quiz-item" data-answer="c">
+          <p class="quiz-question">10. A client asks whether a specific loss is covered by their policy. What is the appropriate response?</p>
+          <label class="quiz-option"><input type="radio" name="q10" value="a"> Confirm coverage based on your general understanding.</label>
+          <label class="quiz-option"><input type="radio" name="q10" value="b"> Guarantee that the loss is covered.</label>
+          <label class="quiz-option"><input type="radio" name="q10" value="c"> Follow agency procedures and route the question to the producer or authorized person.</label>
+          <label class="quiz-option"><input type="radio" name="q10" value="d"> Ignore the question.</label>
+          <div class="quiz-feedback"></div><div class="explanation">Coverage depends on policy language, facts, exclusions, endorsements, conditions, and other requirements. Route the question to an appropriately authorized person.</div>
+        </div>
+        <div class="action-row">
+          <button class="button" type="submit">Submit knowledge check</button>
+          <button class="button secondary" type="button" id="resetQuiz">Reset answers</button>
+        </div>
+      </form>
+      <div class="quiz-results" id="quizResults" aria-live="polite" hidden></div>
+
+      <div class="lesson-footer">
+        <button class="button secondary" type="button" data-go="practice">Back</button>
+        <button class="button" type="button" data-go="application">Continue to final application <svg class="icon"><use href="#i-arrow"></use></svg></button>
+      </div>
+    </section>
+
+    <!-- FINAL APPLICATION -->
+    <section class="lesson-section" id="application" data-title="Final application" hidden>
+      <p class="page-kicker">Section 7 · Demonstrate your judgment</p>
+      <h1 class="page-title">Final application: your first account assignment</h1>
+      <p class="page-lead">Use the information in this scenario to show what you would clarify, who should be involved, and how you would communicate the account status.</p>
+
+      <div class="scenario-box">
+        <div class="scenario-head"><span class="card-icon"><svg class="icon icon-lg"><use href="#i-building"></use></svg></span><div><p class="eyebrow">Account scenario</p><h2>Property management company</h2></div></div>
+        <p>You are assigned an account for a property management company that owns several apartment buildings. The producer asks you to help prepare the account for insurance marketing.</p>
+        <p><strong>You receive:</strong> the client's business details, a list of property locations, a Statement of Values, a prior policy, and a partially completed questionnaire.</p>
+        <p><strong>During your initial review, you notice:</strong></p>
+        <ol>
+          <li>One property address appears differently in two documents.</li>
+          <li>One building value is missing.</li>
+          <li>The prior policy expiration date is approaching.</li>
+          <li>The client asks whether water damage is covered.</li>
+          <li>The producer wants an update on submission readiness.</li>
+        </ol>
+      </div>
+
+      <div class="response-grid">
+        <div class="response-field"><label class="form-label" for="finalA">Task A · Identify the information gaps. What needs clarification or attention?</label><textarea id="finalA" placeholder="List the missing or inconsistent information…"></textarea></div>
+        <div class="response-field"><label class="form-label" for="finalB">Task B · Identify the appropriate owner. What should go to the client, producer, or another authorized contact?</label><textarea id="finalB" placeholder="Identify who should handle each item…"></textarea></div>
+        <div class="response-field"><label class="form-label" for="finalC">Task C · Determine your immediate next steps. What must be addressed before the submission can be considered ready?</label><textarea id="finalC" placeholder="Describe the next actions and follow-up…"></textarea></div>
+        <div class="response-field"><label class="form-label" for="finalD">Task D · Recognize the coverage question. Why should you not independently give a definitive answer about water damage coverage?</label><textarea id="finalD" placeholder="Explain why this needs authorized review…"></textarea></div>
+        <div class="response-field"><label class="form-label" for="finalE">Task E · Communicate status. Write a concise update to the producer explaining current status and next steps.</label><textarea id="finalE" placeholder="Draft a brief professional update…"></textarea></div>
+      </div>
+
+      <div class="action-row">
+        <button class="button" type="button" id="reviewFinal">Review my response</button>
+        <span class="small">Complete all five response fields before reviewing.</span>
+      </div>
+      <div class="feedback" id="finalFeedback" aria-live="polite"></div>
+
+      <div class="model-answer" id="finalModel" hidden>
+        <h3>Model response and self-review</h3>
+        <p><strong>A. Information gaps:</strong> The conflicting property address; the missing building value; the approaching policy expiration; and the client's coverage question, which requires authorized review.</p>
+        <p><strong>B. Appropriate ownership:</strong> Ask the client or authorized contact to confirm property details and provide the missing value. The producer reviews the coverage question and determines the appropriate response. The CSR coordinates requests, organizes documentation, maintains account records, and tracks follow-up.</p>
+        <p><strong>C. Immediate next steps:</strong> Confirm the correct address; obtain the missing building value and supporting information; review the prior policy and confirm the expiration date; notify the producer about outstanding information and timing; maintain a follow-up task and update the account record.</p>
+        <p><strong>D. Coverage question:</strong> Water damage coverage can depend on policy wording, exclusions, endorsements, conditions, and the circumstances of a loss. Do not promise or interpret coverage beyond your assigned authority.</p>
+        <p><strong>E. Example producer update:</strong> “Initial review completed for the property management account. The property address for one location differs between the submitted documents, and the building value for another location is missing. These items require clarification before the submission package can be considered complete. The prior policy also indicates an approaching expiration date, so renewal timing should be prioritized. The client has asked about water damage coverage; this question should be reviewed by the producer before a response is provided. I will coordinate the outstanding information and update the account record as items are received.”</p>
+        <div class="callout"><svg class="icon"><use href="#i-check"></use></svg><p>Self-check: Did your response distinguish CSR coordination from producer authority, avoid guessing, address the approaching expiration, and make the next steps clear?</p></div>
+      </div>
+
+      <div class="lesson-footer">
+        <button class="button secondary" type="button" data-go="assessment">Back to knowledge check</button>
+        <button class="button" type="button" data-go="completion">Continue to completion <svg class="icon"><use href="#i-arrow"></use></svg></button>
+      </div>
+    </section>
+
+    <!-- COMPLETION, TIME, VALIDATION, AND MODULE 2 -->
+    <section class="lesson-section" id="completion" data-title="Completion and next steps" hidden>
+      <p class="page-kicker">Module 1 · Review and next steps</p>
+      <div class="completion-banner">
+        <h1 class="page-title" style="color:#fff">You have the foundations. Now apply them.</h1>
+        <p>Before moving on, review the key takeaways, confirm the module requirements, and note the agency-specific content that should be validated before release.</p>
+      </div>
+
+      <section class="content-block">
+        <p class="eyebrow">Key takeaways</p>
+        <h2>Keep these principles in mind</h2>
+        <div class="grid-2">
+          <article class="card"><ol class="bullet-check">
+            <li>A Commercial Lines CSR supports the full commercial account lifecycle.</li>
+            <li>Commercial accounts require accurate information about the business, property, operations, and exposures.</li>
+            <li>Commercial coverage types address different categories of risk.</li>
+            <li>Quotes must be reviewed beyond premium alone.</li>
+          </ol></article>
+          <article class="card"><ol class="bullet-check" start="5">
+            <li>Clarify missing or conflicting information rather than assuming.</li>
+            <li>Coverage advice, underwriting decisions, and binding authority belong with appropriately authorized personnel.</li>
+            <li>Account activities and follow-ups must be documented accurately in EZLynx.</li>
+            <li>Renewal work must begin early enough to support the agency's process.</li>
+          </ol></article>
+        </div>
+      </section>
+
+      <section class="content-block">
+        <p class="eyebrow">Estimated learner seat time</p>
+        <h2>120 minutes total, including activities and assessment</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Section</th><th>Time</th></tr></thead>
+            <tbody>
+              <tr><td>Introduction and role orientation</td><td>15 min</td></tr>
+              <tr><td>Commercial insurance fundamentals</td><td>30 min</td></tr>
+              <tr><td>Commercial account lifecycle</td><td>20 min</td></tr>
+              <tr><td>EZLynx and documentation expectations</td><td>15 min</td></tr>
+              <tr><td>Guided practice</td><td>20 min</td></tr>
+              <tr><td>Knowledge check and final application</td><td>20 min</td></tr>
+              <tr><th>Total estimated seat time</th><th>120 min</th></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="content-block">
+        <p class="eyebrow">Before this course is released</p>
+        <h2>Validate agency-specific details</h2>
+        <p class="section-intro">Review these items against the agency's actual operating procedures before publishing or assigning the course.</p>
+        <div class="grid-2">
+          <article class="card"><div class="card-header"><span class="card-icon"><svg class="icon"><use href="#i-clipboard"></use></svg></span><div><h3>EZLynx configuration</h3></div></div><p>Confirm which account fields, activity types, task features, and document storage conventions your team actually uses.</p></article>
+          <article class="card"><div class="card-header"><span class="card-icon"><svg class="icon"><use href="#i-lock"></use></svg></span><div><h3>Authority boundaries</h3></div></div><p>Define precisely what the CSR may process independently versus what requires producer or supervisor approval.</p></article>
+          <article class="card"><div class="card-header"><span class="card-icon"><svg class="icon"><use href="#i-arrow"></use></svg></span><div><h3>Carrier workflows</h3></div></div><p>Carrier submission and binding requirements vary. Ensure examples do not imply one universal process.</p></article>
+          <article class="card"><div class="card-header"><span class="card-icon"><svg class="icon"><use href="#i-file"></use></svg></span><div><h3>ACORD forms</h3></div></div><p>Have a commercial lines subject matter expert validate form names, purposes, and the current versions used by the agency.</p></article>
+          <article class="card"><div class="card-header"><span class="card-icon"><svg class="icon"><use href="#i-shield"></use></svg></span><div><h3>Coverage explanations</h3></div></div><p>Keep this module foundational. Do not turn general descriptions into promises of coverage or advice to clients.</p></article>
+        </div>
+      </section>
+
+      <section class="content-block">
+        <div class="grid-2">
+          <article class="card">
+            <p class="eyebrow">Recommended development sequence</p>
+            <h2>Build for accuracy and maintainability</h2>
+            <p>This module is delivered as a standalone HTML course. Keep agency-specific content easy to update as procedures and EZLynx configuration change. Validate operational details before release, then develop deeper system practice in the next module.</p>
+            <p>Reserve more complex scenario work for situations where learners need to compare information, make decisions, and explain their reasoning.</p>
+          </article>
+          <article class="card">
+            <p class="eyebrow">Next module</p>
+            <h2>Module 2: EZLynx Navigation and AMS Fundamentals</h2>
+            <p>Move from understanding the work to navigating the system. Learners should practice opening an account, locating documents, recording activities, and managing follow-up tasks using the agency's actual EZLynx environment and conventions.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-block">
+        <p class="eyebrow">Completion criteria</p>
+        <h2>Confirm the required learning activities</h2>
+        <p class="section-intro">To complete Module 1, review all required learning screens, complete guided practice, score at least 80% on the knowledge check, and complete the final application challenge.</p>
+        <div class="card">
+          <ul class="checklist">
+            <li><span class="status-pill" id="statusScreens">In progress</span><span>Review all required learning screens.</span></li>
+            <li><span class="status-pill" id="statusPractice">In progress</span><span>Complete the guided practice decisions and activity note.</span></li>
+            <li><span class="status-pill" id="statusQuiz">Not passed</span><span>Score at least 80% on the knowledge check.</span></li>
+            <li><span class="status-pill" id="statusFinal">In progress</span><span>Complete all five written response fields in the final application challenge.</span></li>
+          </ul>
+          <div class="action-row">
+            <button class="button gold" type="button" id="markComplete">Mark Module 1 complete</button>
+          </div>
+          <div class="feedback" id="completionFeedback" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <div class="lesson-footer">
+        <button class="button secondary" type="button" data-go="application">Back to final application</button>
+        <button class="button" type="button" data-go="welcome">Return to module overview <svg class="icon"><use href="#i-home"></use></svg></button>
+      </div>
+    </section>
+
+    <footer class="page-foot">Commercial Lines Customer Service Representative · Module 1 of 12 · Illustrations and icons are embedded in this file; no network connection is required.</footer>
+  </main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  const STORAGE_KEY = "commercial-lines-module-1-progress-v1";
+  const defaults = {
+    visited: [],
+    practiceTask1: false,
+    practiceTask2: false,
+    practiceTask3: false,
+    finalSubmitted: false,
+    quizPassed: false,
+    bestQuiz: 0,
+    courseComplete: false
+  };
+
+  function loadState() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+      return Object.assign({}, defaults, saved, {
+        visited: Array.isArray(saved.visited) ? saved.visited : []
+      });
+    } catch (e) {
+      return Object.assign({}, defaults);
+    }
+  }
+
+  let state = loadState();
+  const sections = Array.from(document.querySelectorAll(".lesson-section"));
+  const learningIds = sections.map(s => s.id).filter(id => id !== "completion");
+  const requiredPages = ["welcome", "role", "fundamentals", "lifecycle", "documentation", "practice", "assessment", "application"];
+
+  function saveState() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) { /* Progress still works for this visit. */ }
+  }
+
+  function setFeedback(element, message, kind) {
+    if (!element) return;
+    element.textContent = message;
+    element.classList.remove("is-correct", "is-incorrect", "is-neutral");
+    if (kind) element.classList.add("is-" + kind);
+  }
+
+  function updateProgress() {
+    const visitedCount = learningIds.filter(id => state.visited.includes(id)).length;
+    const percent = Math.round((visitedCount / learningIds.length) * 100);
+    document.getElementById("progressFill").style.width = percent + "%";
+    document.getElementById("progressPercent").textContent = percent + "%";
+    document.getElementById("progressLabel").textContent = "Learning screens visited";
+    document.querySelectorAll(".nav-link").forEach(button => {
+      const id = button.dataset.target;
+      button.classList.toggle("done", state.visited.includes(id));
+    });
+    updateCompletionUI();
+  }
+
+  function showPage(id) {
+    const target = document.getElementById(id);
+    if (!target) return;
+    sections.forEach(section => { section.hidden = section.id !== id; });
+    document.querySelectorAll(".nav-link").forEach(button => {
+      if (button.dataset.target === id) button.setAttribute("aria-current", "page");
+      else button.removeAttribute("aria-current");
+    });
+    if (id !== "completion" && !state.visited.includes(id)) state.visited.push(id);
+    saveState();
+    updateProgress();
+
+    const title = target.dataset.title || "Module 1";
+    document.title = title + " · Commercial Lines Academy";
+    const index = sections.findIndex(section => section.id === id);
+    const next = sections[index + 1];
+    const continueButton = document.getElementById("headerContinue");
+    if (next) {
+      continueButton.hidden = false;
+      continueButton.dataset.go = next.id;
+      continueButton.innerHTML = (next.id === "completion" ? "Completion" : "Continue") + ' <svg class="icon"><use href="#i-arrow"></use></svg>';
+    } else {
+      continueButton.hidden = true;
+    }
+    if (window.matchMedia("(max-width: 800px)").matches) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }
+
+  document.addEventListener("click", function (event) {
+    const nav = event.target.closest("[data-target]");
+    if (nav) {
+      showPage(nav.dataset.target);
+      return;
+    }
+    const go = event.target.closest("[data-go]");
+    if (go) {
+      showPage(go.dataset.go);
+      return;
+    }
+  });
+
+  document.querySelectorAll(".single-choice .answer-option").forEach(button => {
+    button.addEventListener("click", () => {
+      const widget = button.closest(".single-choice");
+      widget.querySelectorAll(".answer-option").forEach(option => {
+        option.classList.remove("selected");
+        option.setAttribute("aria-pressed", "false");
+      });
+      button.classList.add("selected");
+      button.setAttribute("aria-pressed", "true");
+      const feedback = widget.querySelector(".choice-feedback");
+      if (feedback) setFeedback(feedback, "", "");
+    });
+  });
+
+  document.querySelectorAll(".single-choice .check-answer").forEach(button => {
+    button.addEventListener("click", () => {
+      const widget = button.closest(".single-choice");
+      const selected = widget.querySelector(".answer-option.selected");
+      const feedback = widget.querySelector(".choice-feedback");
+      if (!selected) {
+        setFeedback(feedback, "Choose an answer before checking.", "neutral");
+        return;
+      }
+      const answer = widget.dataset.answer;
+      const correct = selected.dataset.value === answer;
+      const correctOption = widget.querySelector('.answer-option[data-value="' + answer + '"]');
+      const explanation = widget.querySelector(".explanation");
+      widget.querySelectorAll(".answer-option").forEach(option => {
+        option.classList.remove("correct-mark", "incorrect-mark");
+        if (option.dataset.value === answer) option.classList.add("correct-mark");
+        else if (option === selected && !correct) option.classList.add("incorrect-mark");
+      });
+      const message = correct
+        ? "Correct. " + (explanation ? explanation.textContent.trim() : "")
+        : "Not quite. The best answer is " + (correctOption ? correctOption.textContent.trim() : "the correct option") + ". " + (explanation ? explanation.textContent.trim() : "");
+      setFeedback(feedback, message, correct ? "correct" : "incorrect");
+      if (correct && widget.dataset.complete) {
+        state[widget.dataset.complete] = true;
+        saveState();
+        updateProgress();
+      }
+    });
+  });
+
+  document.querySelectorAll(".multi-option").forEach(button => {
+    button.addEventListener("click", () => {
+      const selected = button.classList.toggle("selected");
+      button.setAttribute("aria-pressed", selected ? "true" : "false");
+      const widget = button.closest(".multi-check");
+      if (widget) {
+        const feedback = widget.querySelector(".multi-feedback");
+        if (feedback) setFeedback(feedback, "", "");
+      }
+    });
+  });
+
+  document.querySelectorAll(".multi-check .check-multi").forEach(button => {
+    button.addEventListener("click", () => {
+      const widget = button.closest(".multi-check");
+      const expected = widget.dataset.answer.split(",").map(v => v.trim()).sort();
+      const selected = Array.from(widget.querySelectorAll(".multi-option.selected")).map(b => b.dataset.value).sort();
+      const feedback = widget.querySelector(".multi-feedback");
+      if (!selected.length) {
+        setFeedback(feedback, "Select one or more items before checking.", "neutral");
+        return;
+      }
+      const correct = expected.length === selected.length && expected.every((v, i) => v === selected[i]);
+      const explanation = widget.querySelector(".explanation");
+      const message = correct
+        ? "Correct. " + (explanation ? explanation.textContent.trim() : "")
+        : "Review your selections. The correct items are highlighted in the explanation. " + (explanation ? explanation.textContent.trim() : "");
+      setFeedback(feedback, message, correct ? "correct" : "incorrect");
+      if (correct && widget.dataset.complete) {
+        state[widget.dataset.complete] = true;
+        saveState();
+        updateProgress();
+      }
+    });
+  });
+
+  document.querySelectorAll(".matching-activity .match-check").forEach(button => {
+    button.addEventListener("click", () => {
+      const activity = button.closest(".matching-activity");
+      const selects = Array.from(activity.querySelectorAll("select[data-answer]"));
+      const feedback = activity.querySelector(".match-feedback");
+      if (selects.some(select => !select.value)) {
+        setFeedback(feedback, "Complete each match before checking.", "neutral");
+        return;
+      }
+      const correctCount = selects.filter(select => select.value === select.dataset.answer).length;
+      const allCorrect = correctCount === selects.length;
+      setFeedback(
+        feedback,
+        allCorrect
+          ? "All correct. " + correctCount + " of " + selects.length + " matched."
+          : correctCount + " of " + selects.length + " matched. Review the role, responsibility, coverage, or sequence information and try again.",
+        allCorrect ? "correct" : "incorrect"
+      );
+    });
+  });
+
+  document.querySelectorAll(".classify-item .classify-actions button").forEach(button => {
+    button.addEventListener("click", () => {
+      const item = button.closest(".classify-item");
+      item.dataset.selected = button.dataset.kind;
+      item.querySelectorAll("button").forEach(choice => {
+        choice.classList.toggle("selected", choice === button);
+        choice.setAttribute("aria-pressed", choice === button ? "true" : "false");
+      });
+      item.classList.remove("correct-item", "incorrect-item");
+      setFeedback(document.getElementById("classificationFeedback"), "", "");
+    });
+  });
+
+  document.getElementById("checkClassification").addEventListener("click", () => {
+    const items = Array.from(document.querySelectorAll(".classify-item"));
+    if (items.some(item => !item.dataset.selected)) {
+      setFeedback(document.getElementById("classificationFeedback"), "Classify each situation before checking.", "neutral");
+      return;
+    }
+    let correct = 0;
+    items.forEach(item => {
+      const isCorrect = item.dataset.selected === item.dataset.answer;
+      if (isCorrect) correct++;
+      item.classList.toggle("correct-item", isCorrect);
+      item.classList.toggle("incorrect-item", !isCorrect);
+    });
+    setFeedback(
+      document.getElementById("classificationFeedback"),
+      correct === items.length
+        ? "Correct. All five situations are classified appropriately."
+        : correct + " of " + items.length + " are correct. Review whether the exposure is personal or business-related, then try again.",
+      correct === items.length ? "correct" : "incorrect"
+    );
+  });
+
+  const quizForm = document.getElementById("knowledgeQuiz");
+  quizForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const items = Array.from(quizForm.querySelectorAll(".quiz-item"));
+    const answers = items.map(item => item.querySelector("input:checked"));
+    const results = document.getElementById("quizResults");
+    if (answers.some(answer => !answer)) {
+      results.hidden = false;
+      results.className = "quiz-results retry";
+      results.innerHTML = "<strong>Complete all 10 questions before submitting.</strong>";
+      return;
+    }
+    let score = 0;
+    items.forEach((item, index) => {
+      const correct = answers[index].value === item.dataset.answer;
+      if (correct) score++;
+      const feedback = item.querySelector(".quiz-feedback");
+      const explanation = item.querySelector(".explanation");
+      feedback.className = "quiz-feedback show " + (correct ? "correct" : "incorrect");
+      feedback.textContent = (correct ? "Correct. " : "Review this one. ") + explanation.textContent.trim();
+    });
+    const percent = Math.round((score / items.length) * 100);
+    state.bestQuiz = Math.max(state.bestQuiz || 0, percent);
+    if (percent >= 80) state.quizPassed = true;
+    saveState();
+    updateProgress();
+    results.hidden = false;
+    results.className = "quiz-results " + (percent >= 80 ? "pass" : "retry");
+    results.innerHTML = "<strong>Your score: " + score + " / " + items.length + " (" + percent + "%).</strong> " +
+      (percent >= 80
+        ? "Passing score achieved. You may continue to the final application challenge."
+        : "The recommended passing score is 80%. Review the feedback, reset the answers, and try again.");
+    results.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+
+  document.getElementById("resetQuiz").addEventListener("click", () => {
+    quizForm.reset();
+    quizForm.querySelectorAll(".quiz-feedback").forEach(feedback => {
+      feedback.className = "quiz-feedback";
+      feedback.textContent = "";
+    });
+    const results = document.getElementById("quizResults");
+    results.hidden = true;
+    results.textContent = "";
+  });
+
+  document.getElementById("reviewPracticeNote").addEventListener("click", () => {
+    const note = document.getElementById("practiceNote").value.trim();
+    const feedback = document.getElementById("practiceNoteFeedback");
+    if (note.length < 15) {
+      setFeedback(feedback, "Add a little more detail before reviewing. Include the issue, current status, and next action.", "neutral");
+      return;
+    }
+    document.getElementById("practiceNoteModel").hidden = false;
+    setFeedback(feedback, "Response saved for this practice. Compare your note with the model and check whether it explains what is missing, what is inconsistent, and what happens next.", "correct");
+    state.practiceTask3 = true;
+    saveState();
+    updateProgress();
+  });
+
+  document.getElementById("reviewFinal").addEventListener("click", () => {
+    const ids = ["finalA", "finalB", "finalC", "finalD", "finalE"];
+    const responses = ids.map(id => document.getElementById(id).value.trim());
+    const feedback = document.getElementById("finalFeedback");
+    if (responses.some(value => value.length < 3)) {
+      setFeedback(feedback, "Complete all five response fields before reviewing. Brief bullet points are acceptable if they explain your decisions.", "neutral");
+      return;
+    }
+    document.getElementById("finalModel").hidden = false;
+    setFeedback(feedback, "All five response fields are complete. Compare your decisions with the model response and self-review.", "correct");
+    state.finalSubmitted = true;
+    saveState();
+    updateProgress();
+  });
+
+  document.getElementById("markComplete").addEventListener("click", () => {
+    const missing = [];
+    const allPagesVisited = requiredPages.every(id => state.visited.includes(id));
+    if (!allPagesVisited) missing.push("review all required learning screens");
+    if (!(state.practiceTask1 && state.practiceTask2 && state.practiceTask3)) missing.push("complete the guided practice decisions and note");
+    if (!state.quizPassed) missing.push("score at least 80% on the knowledge check");
+    if (!state.finalSubmitted) missing.push("complete all five final application responses");
+    const feedback = document.getElementById("completionFeedback");
+
+    if (missing.length) {
+      setFeedback(feedback, "Not ready to mark complete yet. Please " + missing.join("; ") + ".", "neutral");
+      return;
+    }
+    state.courseComplete = true;
+    saveState();
+    updateCompletionUI();
+    setFeedback(feedback, "Module 1 complete. Your progress is saved in this browser. Next: Module 2 – EZLynx Navigation and Agency Management System Fundamentals.", "correct");
+  });
+
+  function updateCompletionUI() {
+    const allPagesVisited = requiredPages.every(id => state.visited.includes(id));
+    const practiceComplete = state.practiceTask1 && state.practiceTask2 && state.practiceTask3;
+    const statuses = [
+      ["statusScreens", allPagesVisited, allPagesVisited ? "Reviewed" : "In progress"],
+      ["statusPractice", practiceComplete, practiceComplete ? "Complete" : "In progress"],
+      ["statusQuiz", state.quizPassed, state.quizPassed ? "Passed" : "Not passed"],
+      ["statusFinal", state.finalSubmitted, state.finalSubmitted ? "Complete" : "In progress"]
+    ];
+    statuses.forEach(([id, done, text]) => {
+      const element = document.getElementById(id);
+      if (!element) return;
+      element.textContent = text;
+      element.classList.toggle("complete", !!done);
+    });
+    const button = document.getElementById("markComplete");
+    if (button && state.courseComplete) {
+      button.textContent = "Module 1 complete";
+      button.disabled = true;
+      button.style.opacity = ".78";
+    }
+  }
+
+  showPage("welcome");
+})();
+</script>
+</body>
+</html>
